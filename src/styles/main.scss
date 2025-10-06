@@ -1,0 +1,34 @@
+// Bootstrap imports
+
+// Basic variables
+$white: #ffffff;
+$black: #000000;
+$gray-900: #333333;
+$gray-500: #959595;
+$pink: #ff215f;
+$pink-light: #e46483;
+$blue: #9fb5d8;
+
+// Basic reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter Tight", sans-serif;
+  background-color: $white;
+  color: $gray-900;
+  line-height: 1.6;
+}
+
+// Reduced motion
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
