@@ -9,10 +9,10 @@ $pink: #ff215f;
 $pink-light: #e46483;
 $blue: #9fb5d8;
 
-// Basic reset
-* {
-  margin: 0;
-  padding: 0;
+// Basic reset (safer)
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -32,3 +32,823 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+// Compatibility mappings (map old variable names to the new basic variables)
+// This keeps existing references in the stylesheet working after replacing
+// the original variable block with a smaller set of basic variables.
+$primary-color: $gray-900;
+$secondary-color: $white;
+$accent-color: $pink;
+$off-bike-color: $blue;
+$text-muted: rgba($gray-900, 0.6);
+$gradient-pink: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) -0.23%,
+    rgba($pink, 0.35) 99.77%
+  ),
+  linear-gradient(0deg, $pink-light, $pink-light);
+$gradient-dark: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) -0.23%,
+    rgba(0, 0, 0, 0.7) 99.77%
+  ),
+  linear-gradient(0deg, $black, $black);
+
+// Mixins / Functions
+// responsive-clamp: use as a function so it can be returned as a value
+@function responsive-clamp($min, $pref, $max) {
+  @return clamp(#{$min}, #{$pref}, #{$max});
+}
+
+// Mobile First Mixins
+@mixin mobile-first($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == desktop {
+    @media (min-width: 992px) {
+      @content;
+    }
+  }
+  @if $breakpoint == large {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  }
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin absolute-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+}
+
+// Reset & Base Styles (minimal)
+body {
+  font-family: "Inter Tight", sans-serif;
+  background-color: $secondary-color;
+  color: $primary-color;
+  line-height: 1.6;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  height: 200vh;
+}
+
+// Header Styling
+.header {
+  // MOBILE BASE - Bootstrap handles container padding
+  text-align: center;
+  padding-top: responsive-clamp(24px, 4vh, 48px);
+  background-color: $white;
+  .logo {
+    max-height: responsive-clamp(32px, 6vh, 48px);
+  }
+
+  .tagline {
+    font-size: responsive-clamp(11px, 1.4vw, 13px);
+    color: $gray-500;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+}
+
+//Hero Styling
+.hero-section {
+  // Mobile styles (default)
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  height: clamp(300px, 60vh, 500px);
+  overflow: hidden;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+
+  .video-container {
+    border-radius: 0;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    --hero-blur: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(var(--hero-blur));
+    -webkit-backdrop-filter: blur(var(--hero-blur));
+  }
+
+  .hero-logo {
+    max-height: clamp(80px, 20vh, 150px);
+    height: auto;
+    width: auto;
+    display: block;
+  }
+
+  // Tablet (768px and up)
+  @media (min-width: 768px) {
+    height: clamp(420px, 82vh, 880px);
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    .hero-video {
+      object-position: 50% 25%;
+    }
+
+    .hero-logo {
+      max-height: clamp(120px, 22vh, 220px);
+    }
+  }
+
+  // Desktop (1200px and up)
+  @media (min-width: 1200px) {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min(1800px, 96vw);
+    border-radius: 16px;
+
+    .video-container {
+      border-radius: 16px;
+    }
+
+    .hero-video {
+      object-position: center -90px; // Restore specific crop only for desktop
+    }
+  }
+}
+
+.call-to-action {
+  // Mobile base styles
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  padding: 1.5rem 1rem;
+  background-color: $white;
+  text-align: center;
+}
+
+.call-to-action-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.call-to-action-reveal {
+  margin-bottom: 1.5rem;
+}
+
+.call-to-action-text {
+  font-size: clamp(1.125rem, 4vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: $gray-900;
+  margin-bottom: 1.5rem;
+}
+
+.call-to-action-text .word {
+  white-space: pre-wrap;
+}
+
+.call-to-action-link {
+  display: inline-block;
+  font-weight: 600;
+  color: $gray-900;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  font-size: clamp(0.875rem, 3.5vw, 1rem);
+  transition: color 0.3s ease;
+}
+
+// Tablet (768px and up)
+@media (min-width: 768px) {
+  .call-to-action {
+    padding: 2rem 1.5rem;
+  }
+
+  .call-to-action-container {
+    max-width: min(780px, 90vw);
+  }
+
+  .call-to-action-text {
+    font-size: clamp(1.25rem, 2.6vw, 1.625rem);
+    line-height: 1.35;
+    margin-bottom: 2rem;
+  }
+
+  .call-to-action-link {
+    font-size: clamp(0.9375rem, 1.8vw, 1rem);
+    text-underline-offset: 8px;
+  }
+}
+
+// Desktop (1200px and up)
+@media (min-width: 1200px) {
+  .call-to-action {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min(1400px, 94vw);
+    border-radius: 16px;
+    padding: clamp(1rem, 4vh, 1.75rem) 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .call-to-action-container {
+    max-width: min(780px, 100%);
+  }
+
+  .call-to-action-text {
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Large Desktop (1400px and up)
+@media (min-width: 1400px) {
+  .call-to-action {
+    max-width: min(1600px, 92vw);
+    padding: clamp(1.25rem, 4vh, 2rem) 0;
+  }
+}
+
+// Extra Large Desktop (1600px and up)
+@media (min-width: 1600px) {
+  .call-to-action {
+    max-width: min(1800px, 90vw);
+  }
+}
+
+/*
+// Call to Action
+.CallToAction {
+  text-align: center;
+  max-width: 780px;
+  padding: responsive-clamp(16px, 4vh, 28px) 0;
+  margin: 0 auto;
+
+  h2 {
+    font-size: responsive-clamp(20px, 2.6vw, 26px);
+    font-weight: 300;
+    line-height: 1.35;
+    margin-bottom: 24px;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+
+    span {
+      font-weight: 600;
+    }
+  }
+
+  a {
+    display: inline-block;
+    font-weight: 600;
+    color: $primary-color;
+    text-decoration: underline;
+    font-size: responsive-clamp(14px, 1.8vw, 16px);
+    transition: color 0.3s ease;
+    text-underline-offset: 8px;
+
+    &:hover {
+      color: #000000;
+    }
+  }
+}
+
+// Hero Section
+.hero-section {
+  position: relative;
+  height: responsive-clamp(420px, 82vh, 880px);
+  overflow: hidden;
+  margin: 20px auto;
+  max-width: min(1400px, 96vw);
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .hero-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center -90px;
+  }
+
+  .hero-overlay {
+    @include absolute-cover;
+    z-index: 2;
+    display: grid;
+    place-items: center;
+    --hero-blur: 6px;
+    background: rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(var(--hero-blur));
+    -webkit-backdrop-filter: blur(var(--hero-blur));
+    will-change: backdrop-filter, -webkit-backdrop-filter;
+  }
+
+  .hero-logo {
+    max-height: responsive-clamp(120px, 22vh, 220px);
+    height: auto;
+    width: auto;
+    display: block;
+    transform-origin: center center;
+    will-change: transform;
+  }
+}
+
+// Custom Kits Section
+.custom-kits-section {
+  background-image: url("./assets/images/Section_background.png");
+  background-size: cover;
+  background-position: center;
+  color: $secondary-color;
+  padding: responsive-clamp(40px, 8vw, 72px) responsive-clamp(16px, 4vw, 40px);
+  border-radius: 20px;
+  margin: 40px auto;
+  max-width: min(1400px, 96vw);
+
+  .section-header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: start;
+    gap: 24px;
+    margin-bottom: 50px;
+  }
+
+  .section-text {
+    h2 {
+      font-size: responsive-clamp(26px, 4vw, 36px);
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: responsive-clamp(14px, 1.8vw, 16px);
+      font-weight: 300;
+      opacity: 0.9;
+    }
+  }
+
+  .section-video {
+    width: 100%;
+    max-width: 520px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    justify-self: end;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .kit-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .kit-card {
+    background: transparent;
+    border-radius: 16px;
+    padding: 8px;
+    width: responsive-clamp(160px, 22vw, 200px);
+    text-align: center;
+
+    .kit-wrapper {
+      position: relative;
+      width: 100%;
+      height: responsive-clamp(140px, 18vw, 200px);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 8px;
+
+      .tags-container {
+        position: absolute;
+        top: responsive-clamp(6px, 1.2vw, 10px);
+        right: responsive-clamp(6px, 1.2vw, 10px);
+        display: flex;
+        gap: 6px;
+        z-index: 10;
+
+        .tag {
+          font-size: responsive-clamp(8px, 1.2vw, 10px);
+          font-weight: 700;
+          width: responsive-clamp(52px, 8vw, 64px);
+          height: responsive-clamp(18px, 3.2vw, 22px);
+          @include flex-center;
+          border-radius: 999px;
+
+          &.pink {
+            background-color: $accent-color;
+          }
+
+          &.white {
+            color: #000000;
+            background-color: $secondary-color;
+          }
+        }
+      }
+
+      video,
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .custom-span {
+      font-family: "Inter Tight", sans-serif;
+      font-weight: 400;
+      font-size: responsive-clamp(10px, 1.4vw, 12px);
+      line-height: 20px;
+      color: #959595;
+    }
+
+    h3 {
+      color: #000000;
+      font-size: responsive-clamp(16px, 2.4vw, 20px);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+  }
+}
+
+// Clothing Section
+.clothing-section {
+  width: min(1400px, 96vw);
+  margin: responsive-clamp(48px, 10vh, 96px) auto;
+
+  .clothing-header-wrapper {
+    position: relative;
+    max-width: clamp(560px, 70%, 900px);
+    margin: 0 auto;
+
+    h2 {
+      font-size: responsive-clamp(24px, 3.6vw, 32px);
+      font-weight: 600;
+      color: #000000;
+      text-align: center;
+      max-width: 860px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tag {
+      position: absolute;
+      top: responsive-clamp(-28px, -6vh, -18px);
+      right: 0;
+      transform: rotate(10deg);
+      transform-origin: 100% 50%;
+      background-color: $accent-color;
+      color: $secondary-color;
+      min-width: 88px;
+      height: responsive-clamp(30px, 5vh, 38px);
+      padding: 0 responsive-clamp(12px, 2vw, 16px);
+      @include flex-center;
+      border-radius: 999px;
+      font-size: responsive-clamp(14px, 2vw, 16px);
+      font-weight: 600;
+      white-space: nowrap;
+      z-index: 5;
+      will-change: transform;
+    }
+  }
+
+  .clothing-items-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: responsive-clamp(20px, 4vw, 40px);
+    margin-top: responsive-clamp(24px, 6vh, 40px);
+    flex-wrap: wrap;
+
+    article {
+      background-size: cover;
+      background-position: center 20%;
+      min-height: responsive-clamp(360px, 42vh, 520px);
+      width: clamp(320px, 44%, 640px);
+      border-radius: 12px;
+      position: relative;
+      padding: responsive-clamp(10px, 2vw, 16px);
+      will-change: transform, opacity;
+
+      &#apparel {
+        background-image: url("./assets/images/Cycling_apparel.png");
+        background-position: center 18%;
+      }
+
+      &#accessories {
+        background-image: url("./assets/images/Accessories.png");
+      }
+    }
+
+    .clothing-article-content {
+      background: $gradient-pink;
+      width: min(max(340px, 30vw), calc(100% - 24px));
+      border-radius: 10px;
+      color: $secondary-color;
+      padding: responsive-clamp(10px, 2vw, 14px);
+      position: absolute;
+      bottom: responsive-clamp(10px, 2vw, 16px);
+      left: responsive-clamp(10px, 2vw, 16px);
+      display: grid;
+      grid-auto-rows: min-content;
+      row-gap: responsive-clamp(6px, 1.6vw, 10px);
+
+      h3 {
+        font-size: responsive-clamp(16px, 2.6vw, 20px);
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      span {
+        font-size: responsive-clamp(11px, 1.8vw, 13px);
+        font-weight: 500;
+      }
+
+      .clothing-links {
+        display: flex;
+        gap: responsive-clamp(8px, 1.8vw, 12px);
+        flex-wrap: wrap;
+        align-items: center;
+
+        a {
+          color: $secondary-color;
+          text-decoration: none;
+          font-size: responsive-clamp(10px, 1.6vw, 12px);
+          font-weight: 700;
+          padding: responsive-clamp(5px, 1.6vw, 7px)
+            responsive-clamp(8px, 2.2vw, 12px);
+          border: 2px solid $secondary-color;
+          border-radius: 999px;
+          @include flex-center;
+          gap: 4px;
+          white-space: nowrap;
+          transition: all 0.4s ease;
+
+          svg path {
+            transition: stroke 0.4s ease;
+          }
+
+          &:hover {
+            background: $secondary-color;
+            color: #e46483;
+            text-decoration: none;
+
+            svg path {
+              stroke: #e46483;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Off-bike Collection
+.off-bike-header-wrapper {
+  position: relative;
+  max-width: clamp(560px, 70%, 900px);
+  margin: responsive-clamp(80px, 14vh, 160px) auto 0;
+
+  h2 {
+    font-size: responsive-clamp(24px, 3.6vw, 32px);
+    font-weight: 600;
+    color: #000000;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .off-bike-tag {
+    position: absolute;
+    top: responsive-clamp(-18px, -3vh, -22px);
+    left: 0;
+    background: $off-bike-color;
+    color: $secondary-color;
+    padding: responsive-clamp(6px, 1.6vw, 8px)
+      responsive-clamp(12px, 2.2vw, 16px);
+    border-radius: 999px;
+    font-size: responsive-clamp(14px, 2vw, 16px);
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 10;
+    transform: rotate(-10deg);
+  }
+}
+
+.off-bike-items-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: responsive-clamp(28px, 6vh, 44px);
+
+  #off-bike-hero {
+    background: none;
+    width: 100%;
+    max-width: min(1400px, 96vw);
+    margin: 0 auto;
+    border-radius: 12px;
+    position: relative;
+    padding: 0;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    height: 80vh;
+
+    .off-bike-video {
+      @include absolute-cover;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    .off-bike-content {
+      background: $gradient-dark;
+      z-index: 2;
+
+      .clothing-links a:hover {
+        color: #000000;
+
+        svg path {
+          stroke: #000000;
+        }
+      }
+    }
+  }
+}
+
+// Scroll Reveal
+.cta-scroll-reveal,
+.clothing-scroll-reveal,
+.off-bike-scroll-reveal {
+  margin: 0;
+
+  .scroll-reveal-text {
+    font-size: clamp(1.2rem, 3vw, 1.9rem);
+    line-height: 1.5;
+    font-weight: 500;
+    text-align: center;
+    padding: 0 20px;
+    max-width: 720px;
+    margin: 0 auto;
+
+    .word {
+      white-space: pre;
+    }
+  }
+}
+
+.cta-scroll-reveal .scroll-reveal-text {
+  font-size: clamp(1.2rem, 3.2vw, 2rem);
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+// Responsive Design
+@media (max-width: 1024px) {
+  .custom-kits-section {
+    .section-video {
+      display: none;
+    }
+
+    .section-header {
+      grid-template-columns: 1fr;
+      gap: responsive-clamp(16px, 4vw, 24px);
+      text-align: center;
+
+      .section-text {
+        justify-self: center;
+
+        h2,
+        p {
+          max-width: none;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .clothing-section {
+    .clothing-article-content {
+      width: min(max(300px, 72vw), calc(100% - 20px));
+    }
+
+    .clothing-header-wrapper .tag {
+      font-size: responsive-clamp(12px, 2.2vw, 14px);
+      top: responsive-clamp(-24px, -6vh, -16px);
+      right: responsive-clamp(-10px, 2vw, 6px);
+    }
+
+    .clothing-items-wrapper {
+      flex-direction: column;
+
+      article {
+        width: 100%;
+        min-height: 30vh;
+        aspect-ratio: auto;
+      }
+    }
+  }
+
+  .off-bike-header-wrapper .off-bike-tag {
+    top: -18px;
+    left: 0;
+    font-size: responsive-clamp(12px, 2.2vw, 14px);
+  }
+
+  .hero-video {
+    object-position: center;
+  }
+
+  .CallToAction {
+    padding: responsive-clamp(20px, 6vh, 32px) 20px;
+
+    h2 {
+      font-size: responsive-clamp(18px, 3.8vw, 22px);
+    }
+
+    a {
+      font-size: responsive-clamp(13px, 2.4vw, 15px);
+    }
+  }
+
+  .custom-kits-section {
+    padding: responsive-clamp(28px, 8vw, 44px) 20px;
+  }
+
+  #off-bike-hero {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .CallToAction {
+    h2 {
+      font-size: responsive-clamp(16px, 4.4vw, 18px);
+    }
+
+    a {
+      font-size: responsive-clamp(12px, 3.6vw, 14px);
+    }
+  }
+
+  .clothing-header-wrapper .tag {
+    top: responsive-clamp(-22px, -7vh, -14px);
+    right: responsive-clamp(-16px, 4vw, 0px);
+    transform: rotate(5deg);
+  }
+}
+
+// Reduced Motion
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+*/
