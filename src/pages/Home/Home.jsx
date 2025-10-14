@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import HeroSection from "../../components/home/HeroSection/HeroSection";
 import CallToAction from "../../components/home/CallToAction/CallToAction";
 import CustomKitsSection from "../../components/home/CustomKitsSection/CustomKitsSection";
+import ClothingSection from "../../components/home/ClothingSection/ClothingSection";
 import { initHeroBlurAnimation } from "../../animations/heroBlur";
 import { initHeroRotateAnimation } from "../../animations/heroRotate";
 
@@ -30,6 +31,7 @@ const Home = () => {
       <HeroSection overlayRef={overlayRef} logoRef={logoRef} />
       <CallToAction ctaContainerRef={ctaContainerRef} />
       <CustomKitsSection />
+      <ClothingSection />
     </>
   );
 };
