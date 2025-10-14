@@ -107,26 +107,23 @@ const CustomKitsSection = () => {
   return (
     <section className="custom-kits-section" ref={sectionRef}>
       <div className="custom-kits-container">
+        {/* Video - nu buiten de header, absoluut gepositioneerd */}
+        <div className="custom-kits-video d-none d-md-block">
+          <video autoPlay muted loop playsInline>
+            <source src={sectionSmallVideo} type="video/mp4" />
+          </video>
+        </div>
+
         {/* Header Section */}
         <div className="custom-kits-header">
           <div className="custom-kits-text">
             <h2 className="custom-kits-title">
-              Custom kits that match
-              <br />
-              your pace, purpose, and personality.
+              Custom kits that match your pace, purpose, and personality.
             </h2>
             <p className="custom-kits-description">
-              Whether you're chasing watts, leading the local bunch,
-              <br className="d-none d-md-block" />
-              or spinning to the café, Decca's got you covered.
+              Whether you’re chasing watts, leading the local bunch, or spinning
+              to the café, Decca’s got you covered.
             </p>
-          </div>
-
-          {/* Video - hidden on mobile, visible on tablet+ */}
-          <div className="custom-kits-video d-none d-md-block">
-            <video autoPlay muted loop playsInline>
-              <source src={sectionSmallVideo} type="video/mp4" />
-            </video>
           </div>
         </div>
 

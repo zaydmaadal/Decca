@@ -211,6 +211,7 @@ body {
   padding: 1.5rem 1rem;
   background-color: $white;
   text-align: center;
+  margin-bottom: 7rem;
 }
 
 .call-to-action-container {
@@ -277,7 +278,6 @@ body {
     border-radius: 16px;
     padding: clamp(1rem, 4vh, 1.75rem) 0;
     margin-top: 1rem;
-    margin-bottom: 1rem;
   }
 
   .call-to-action-container {
@@ -304,54 +304,62 @@ body {
   }
 }
 
-// Custom Kits Section
+//Custom Kits Section
 .custom-kits-section {
-  // Mobile Base Styles
+  // Mobile base
   margin-left: calc(-50vw + 50%);
   background-image: url("../assets/images/section-background.png");
   background-size: cover;
   background-position: center;
   color: $white;
-  padding: 2rem 1rem;
+  padding: 2rem 0;
   margin: 2rem 0;
+  position: relative;
 
   .custom-kits-container {
     width: 100%;
     max-width: 100%;
     margin: 0 auto;
+    position: relative;
   }
 
-  // Header Styles
+  // Header
   .custom-kits-header {
-    margin-bottom: 2rem;
+    padding-top: 7rem;
+    margin: 0 1.5rem 2rem 1.5rem;
+
+    .custom-kits-text {
+      text-align: center;
+      margin-bottom: 1.5rem;
+
+      .custom-kits-title {
+        font-size: clamp(1.625rem, 6vw, 2.25rem);
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      .custom-kits-description {
+        font-size: clamp(0.875rem, 3.5vw, 1rem);
+        font-weight: 300;
+        opacity: 0.9;
+        line-height: 1.5;
+      }
+    }
   }
 
-  .custom-kits-text {
-    text-align: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .custom-kits-title {
-    font-size: clamp(1.625rem, 6vw, 2.25rem);
-    font-weight: 500;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-
-  .custom-kits-description {
-    font-size: clamp(0.875rem, 3.5vw, 1rem);
-    font-weight: 300;
-    opacity: 0.9;
-    line-height: 1.5;
-  }
-
+  // Video
   .custom-kits-video {
-    width: 100%;
-    max-width: 400px;
+    position: absolute;
+    top: -15%;
+    right: 50%;
+    transform: translateX(50%);
+    width: min(350px, 80vw);
     aspect-ratio: 16 / 9;
     border-radius: 12px;
     overflow: hidden;
-    margin: 0 auto;
+    z-index: 10;
+    display: block !important;
 
     video {
       width: 100%;
@@ -360,175 +368,166 @@ body {
     }
   }
 
-  // Tablet Carousel Layout (768px - 1199px)
+  //Cards carousel
   .custom-kits-cards-wrapper {
     overflow-x: auto;
     overflow-y: hidden;
-    scrollbar-width: none; // Firefox
-    -ms-overflow-style: none; // IE
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     scroll-behavior: smooth;
     padding: 2rem 0;
     scroll-snap-type: x mandatory;
 
     &::-webkit-scrollbar {
-      display: none; // Chrome, Safari
-    }
-  }
-
-  .custom-kits-cards-scroll {
-    display: flex;
-    gap: 1.5rem;
-    padding: 1rem calc(50% - 160px); // Center the first card
-    width: max-content;
-
-    // Tablet: Show 2-3 cards based on available space
-    @media (min-width: 768px) and (max-width: 1199px) {
-      padding: 1rem calc(50% - 180px);
-    }
-  }
-
-  .custom-kits-card {
-    flex: 0 0 auto;
-    background: white;
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 8px 8px 1rem 8px;
-    transition: all 0.3s ease;
-    position: relative;
-    scroll-snap-align: center;
-
-    // Default card size for mobile
-    width: 280px;
-
-    // Active card styling
-    &.active {
-      transform: scale(1.05);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-      z-index: 2;
+      display: none;
     }
 
-    // Adjacent cards styling
-    &.adjacent {
-      transform: scale(0.85);
-      filter: blur(2px) brightness(0.8);
-      opacity: 0.8;
-    }
-
-    // Far cards styling
-    &.far {
-      transform: scale(0.75);
-      filter: blur(4px) brightness(0.6);
-      opacity: 0.6;
-    }
-
-    .custom-kits-card-inner {
-      height: 100%;
+    .custom-kits-cards-scroll {
       display: flex;
-      flex-direction: column;
-    }
-
-    .custom-kits-media {
-      position: relative;
-      width: 100%;
-      height: 200px;
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 0.75rem;
-
-      video,
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-    }
-
-    .custom-kits-tags {
-      position: absolute;
-      top: 0.5rem;
-      right: 0.5rem;
-      display: flex;
-      gap: 0.375rem;
-      z-index: 10;
-    }
-
-    .custom-kits-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      white-space: nowrap;
-
-      &.pink {
-        background-color: $pink;
-      }
-
-      &.white {
-        color: $black;
-        background-color: $white;
-      }
-    }
-
-    .custom-kits-content {
-      text-align: center;
-      margin-top: auto;
-    }
-
-    .custom-kits-subtitle {
-      font-size: 0.875rem;
-      font-weight: 400;
-      color: $black;
-      display: block;
-      margin-bottom: 0.25rem;
-    }
-
-    .custom-kits-card-title {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: $black;
-      margin: 0;
-    }
-  }
-
-  @media (max-width: 768px) {
-    padding: 2rem 0rem;
-
-    .custom-kits-header {
-      margin: 0 1rem 2rem 1rem;
-    }
-  }
-
-  // Tablet (768px and up)
-  @media (min-width: 768px) {
-    padding: 3rem 0rem;
-
-    .custom-kits-header {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      align-items: start;
-      margin: 0 1.5rem 3rem 1.5rem;
-    }
-
-    .custom-kits-text {
-      text-align: left;
-      margin-bottom: 0;
-    }
-
-    .custom-kits-title {
-      font-size: clamp(1.75rem, 3.5vw, 2.25rem);
-    }
-
-    .custom-kits-description {
-      font-size: clamp(0.875rem, 1.8vw, 1rem);
+      gap: 1.5rem;
+      padding: 1rem calc(50% - 160px);
+      width: max-content;
     }
 
     .custom-kits-card {
-      width: 300px; // Larger cards on tablet
+      flex: 0 0 auto;
+      width: 280px;
+      background: white;
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 8px 8px 1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      scroll-snap-align: center;
+
+      &.active {
+        transform: scale(1.05);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        z-index: 2;
+      }
+
+      &.adjacent {
+        transform: scale(0.85);
+        filter: blur(2px) brightness(0.8);
+        opacity: 0.8;
+      }
+
+      &.far {
+        transform: scale(0.75);
+        filter: blur(4px) brightness(0.6);
+        opacity: 0.6;
+      }
+
+      .custom-kits-card-inner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .custom-kits-media {
+        position: relative;
+        width: 100%;
+        height: 200px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 0.75rem;
+
+        video,
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .custom-kits-tags {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        display: flex;
+        gap: 0.375rem;
+        z-index: 10;
+      }
+
+      .custom-kits-tag {
+        font-size: 0.75rem;
+        font-weight: 700;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        white-space: nowrap;
+
+        &.pink {
+          background-color: $pink;
+        }
+        &.white {
+          color: $black;
+          background-color: $white;
+        }
+      }
+
+      .custom-kits-content {
+        text-align: center;
+        margin-top: auto;
+
+        .custom-kits-subtitle {
+          font-size: 0.875rem;
+          font-weight: 400;
+          color: $black;
+          display: block;
+          margin-bottom: 0.25rem;
+        }
+
+        .custom-kits-card-title {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: $black;
+          margin: 0;
+        }
+      }
     }
   }
 
-  // Desktop (1200px and up) - NO CAROUSEL
+  @media (min-width: 768px) {
+    .custom-kits-header {
+      padding-top: 0;
+      margin: 0 0 2rem 1.5rem;
+      width: 50%;
+
+      .custom-kits-text {
+        text-align: left;
+
+        .custom-kits-title {
+          font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+        }
+
+        .custom-kits-description {
+          font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+        }
+      }
+    }
+
+    .custom-kits-video {
+      right: 25%;
+      transform: translateX(50%);
+      width: min(325px, 80vw);
+      top: -15%;
+    }
+
+    .custom-kits-cards-wrapper {
+      .custom-kits-cards-scroll {
+        padding: 1rem calc(50% - 180px);
+      }
+
+      .custom-kits-card {
+        width: 300px;
+      }
+    }
+  }
+
+  /* ---------------------------
+     Desktop (min-width: 1200px)
+     - volledige container centrering, grid layout in plaats van carousel
+     --------------------------- */
   @media (min-width: 1200px) {
     width: auto;
     margin-left: auto;
@@ -542,63 +541,63 @@ body {
       max-width: 100%;
     }
 
-    // Desktop Grid Layout with Alternating Heights
+    /* video groter en hoger geplaatst voor desktop */
+    .custom-kits-video {
+      top: -30%;
+      right: 25%;
+      transform: translateX(50%);
+      width: min(400px, 90vw);
+    }
+
+    /* cards: grid layout, geen scroll */
     .custom-kits-cards-wrapper {
       overflow: visible;
       padding: 0;
-    }
 
-    .custom-kits-cards-scroll {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 1.5rem;
-      width: 100%;
-      padding: 0;
-    }
-
-    .custom-kits-card {
-      filter: none !important;
-      opacity: 1 !important;
-      box-shadow: none !important;
-      width: auto;
-
-      // Alternating Positioning Pattern
-      &:nth-child(1) {
-        transform: translateY(0.5rem);
+      .custom-kits-cards-scroll {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.5rem;
+        width: 100%;
+        padding: 0;
       }
 
-      &:nth-child(2) {
-        transform: translateY(-0.75rem);
-      }
+      .custom-kits-card {
+        width: 210px;
+        margin: auto;
+        filter: none !important;
+        opacity: 1 !important;
+        box-shadow: none !important;
 
-      &:nth-child(3) {
-        transform: translateY(1.25rem);
-      }
-
-      &:nth-child(4) {
-        transform: translateY(-0.5rem);
-      }
-
-      &:nth-child(5) {
-        transform: translateY(0.75rem);
+        &:nth-child(1) {
+          transform: translateY(1rem);
+        }
+        &:nth-child(2) {
+          transform: translateY(-0.75rem);
+        }
+        &:nth-child(3) {
+          transform: translateY(1rem);
+        }
+        &:nth-child(4) {
+          transform: translateY(-0.75rem);
+        }
+        &:nth-child(5) {
+          transform: translateY(1rem);
+        }
       }
     }
   }
 
-  // Large Desktop (1400px and up)
+  /* Large / Extra-large desktops */
   @media (min-width: 1400px) {
     max-width: min(1600px, 92vw);
     margin: 4rem auto;
 
-    .custom-kits-card .custom-kits-media {
-    }
-
     .custom-kits-card {
       width: 210px;
-    }
+    } // consistent met origineel large-desktop aanpassing
   }
 
-  // Extra Large Desktop (1600px and up)
   @media (min-width: 1600px) {
     max-width: min(1800px, 90vw);
   }
