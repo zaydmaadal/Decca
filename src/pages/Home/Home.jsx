@@ -32,6 +32,7 @@ const Home = () => {
       <CallToAction ctaContainerRef={ctaContainerRef} />
       <CustomKitsSection />
       <ClothingSection />
+      <CustomKitsSection />
     </>
   );
 };

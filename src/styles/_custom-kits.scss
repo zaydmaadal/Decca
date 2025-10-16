@@ -1,0 +1,465 @@
+@use "variables" as *;
+
+// Custom Kits Section
+.custom-kits-section {
+  // Mobile base
+  margin-left: calc(-50vw + 50%);
+  background-image: url("../assets/images/section-background.png");
+  background-size: cover;
+  background-position: center;
+  color: $white;
+  padding: 2rem 0;
+  margin: 2rem 0;
+  position: relative;
+
+  .custom-kits-container {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  // Header
+  .custom-kits-header {
+    padding-top: 7rem;
+    margin: 0 1.5rem 2rem 1.5rem;
+
+    .custom-kits-text {
+      text-align: center;
+      margin-bottom: 1.5rem;
+
+      .custom-kits-title {
+        font-size: clamp(1.625rem, 6vw, 2.25rem);
+        font-weight: 500;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+      }
+
+      .custom-kits-description {
+        font-size: clamp(0.875rem, 3.5vw, 1rem);
+        font-weight: 300;
+        opacity: 0.9;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  // Video
+  .custom-kits-video {
+    position: absolute;
+    top: -15%;
+    right: 50%;
+    transform: translateX(50%);
+    width: min(350px, 80vw);
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    z-index: 10;
+    display: block !important;
+
+    video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  // Cards carousel
+  .custom-kits-cards-wrapper {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+    padding: 2rem 0;
+    scroll-snap-type: x mandatory;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .custom-kits-cards-scroll {
+      display: flex;
+      gap: 1.5rem;
+      padding: 1rem calc(50% - 160px);
+      width: max-content;
+    }
+
+    .custom-kits-card {
+      &.adjacent .custom-kits-content .custom-kits-card-title {
+        font-size: 1.3rem;
+      }
+      flex: 0 0 auto;
+      width: 260px; // Iets smaller voor strakkere look
+      background: white;
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      padding: 6px 6px 0.75rem; // Minder padding voor compactere look
+      transition: all 0.3s ease;
+      position: relative;
+      scroll-snap-align: center;
+      cursor: pointer;
+
+      // Active state styling voor alle schermen
+      &.active {
+        // Verwijder scale transform voor consistentie
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2); // Subtielere shadow
+        z-index: 2;
+
+        // Show clothing links in active state
+        .clothing-links {
+          display: flex !important;
+        }
+
+        // Active state (zwarte achtergrond)
+        background: #000000;
+
+        .custom-kits-content {
+          .custom-kits-subtitle,
+          .custom-kits-card-title {
+            color: $white;
+          }
+        }
+
+        .custom-kits-tag {
+          background: transparent;
+          border: 1px solid $white;
+          color: $white;
+
+          &.pink,
+          &.white {
+            background: transparent;
+            border: 1px solid $white;
+            color: $white;
+          }
+        }
+      }
+
+      &.adjacent {
+        transform: scale(0.8); // Aangepast van 0.9 naar 0.7
+        filter: blur(1px) brightness(0.85);
+        opacity: 0.85;
+      }
+
+      &.far {
+        transform: scale(0.7); // Aangepast van 0.8 naar 0.6
+        filter: blur(2px) brightness(0.7);
+        opacity: 0.7;
+      }
+
+      .custom-kits-card-inner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .custom-kits-media {
+        position: relative;
+        width: 100%;
+        height: 180px; // Iets korter voor compactere look
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 0.5rem; // Minder margin
+
+        video,
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .custom-kits-tags {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        display: flex;
+        gap: 0.375rem;
+        z-index: 10;
+      }
+
+      .custom-kits-tag {
+        font-size: 0.7rem; // Iets kleiner
+        font-weight: 700;
+        padding: 0.2rem 0.6rem; // Compacter
+        border-radius: 999px;
+        white-space: nowrap;
+
+        &.pink {
+          background-color: $pink;
+        }
+        &.white {
+          color: $black;
+          background-color: $white;
+        }
+      }
+
+      .custom-kits-content {
+        text-align: center;
+        margin: auto;
+        padding: 0 0.25rem; // Minder side padding
+
+        .custom-kits-subtitle {
+          font-size: 0.8rem; // Iets kleiner
+          font-weight: 400;
+          color: #959595; // Nieuwe kleur zoals gevraagd
+          display: block;
+          margin-bottom: 0.125rem; // Veel minder ruimte
+        }
+
+        .custom-kits-card-title {
+          font-size: 1.1rem; // Iets kleiner
+          font-weight: 700;
+          color: $black;
+          margin: 0;
+          line-height: 1.2;
+        }
+
+        // Clothing links styling - hidden by default
+        .clothing-links {
+          display: none;
+          gap: 0.375rem;
+          justify-content: center;
+          margin-top: 0.5rem; // Minder margin
+          flex-wrap: wrap;
+
+          a {
+            color: $white;
+            text-decoration: none;
+            font-size: 0.65rem; // Kleiner voor compacte look
+            font-weight: 700;
+            padding: 0.3rem 0.5rem; // Compacter
+            border: 1.5px solid $white; // Dunnere border
+            border-radius: 999px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.2rem;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+
+            svg {
+              width: 7px;
+              height: 7px;
+            }
+
+            svg path {
+              transition: stroke 0.3s ease;
+            }
+
+            &:hover {
+              background: $white;
+              color: #000000;
+
+              svg path {
+                stroke: #000000;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Carousel Navigation
+  .carousel-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+
+    .carousel-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      border-radius: 50%;
+      width: 2.5rem; // Kleiner
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover:not(:disabled) {
+        background: rgba(255, 255, 255, 0.3);
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        cursor: not-allowed;
+      }
+
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+        stroke: $white;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .custom-kits-header {
+      padding-top: 0;
+      margin: 0 0 2rem 1.5rem;
+      width: 50%;
+
+      .custom-kits-text {
+        text-align: left;
+
+        .custom-kits-title {
+          font-size: clamp(1.75rem, 3.5vw, 2.25rem);
+        }
+
+        .custom-kits-description {
+          font-size: clamp(0.95rem, 1.8vw, 1.2rem);
+        }
+      }
+    }
+
+    .custom-kits-video {
+      right: 25%;
+      transform: translateX(50%);
+      width: min(325px, 80vw);
+      top: -15%;
+    }
+
+    .custom-kits-cards-wrapper {
+      .custom-kits-cards-scroll {
+        padding: 1rem calc(50% - 170px);
+      }
+
+      .custom-kits-card {
+        width: 280px; // Iets smaller op tablet
+
+        .custom-kits-media {
+          height: 190px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1200px) {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min(1400px, 94vw);
+    border-radius: 20px;
+    padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1.5rem, 3vw, 2.5rem);
+    margin: 3rem auto;
+
+    .custom-kits-container {
+      max-width: 100%;
+    }
+
+    .custom-kits-video {
+      top: -30%;
+      right: 25%;
+      transform: translateX(50%);
+      width: min(400px, 90vw);
+    }
+
+    .custom-kits-cards-wrapper {
+      overflow: visible;
+      padding: 0;
+
+      .custom-kits-cards-scroll {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1.25rem; // Kleinere gap voor strakkere look
+        width: 100%;
+        padding: 0;
+      }
+
+      .custom-kits-card {
+        width: auto;
+        margin: auto;
+        filter: none !important;
+        opacity: 1 !important;
+        box-shadow: none !important;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        padding: 8px 8px 0.75rem; // Consistente padding
+
+        // Alternerende positionering voor desktop (1200px en groter)
+        &:nth-child(odd) {
+          transform: translateY(-1rem);
+        }
+        &:nth-child(even) {
+          transform: translateY(1rem);
+        }
+
+        // Active card op desktop - geen positie verandering
+        &.active {
+          transform: none !important;
+        }
+
+        // Hover effect voor desktop (subtiel)
+        &:hover {
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        // Active card op desktop - geen positie verandering
+        &.active {
+          background: #000000 !important;
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+          z-index: 10;
+          transform: none !important; // Geen scale transform
+
+          // Compacte spacing in active state
+          .custom-kits-content {
+            padding: 0 0.125rem;
+
+            .custom-kits-subtitle {
+              margin-bottom: 0.125rem;
+            }
+
+            .custom-kits-card-title {
+              margin-bottom: 0.25rem;
+            }
+
+            .clothing-links {
+              margin-top: 0.375rem;
+
+              a {
+                font-size: 0.6rem;
+                padding: 0.25rem 0.4rem;
+
+                svg {
+                  width: 6px;
+                  height: 6px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .carousel-navigation {
+      display: none;
+    }
+  }
+
+  @media (min-width: 1400px) {
+    max-width: min(1600px, 92vw);
+    margin: 4rem auto;
+
+    .custom-kits-card {
+      width: 200px; // Iets smaller op grote desktop
+
+      .custom-kits-media {
+        height: 170px;
+      }
+    }
+  }
+
+  @media (min-width: 1600px) {
+    max-width: min(1800px, 90vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .custom-kits-section {
+    padding: clamp(1.75rem, 8vw, 2.75rem) 0;
+  }
+}

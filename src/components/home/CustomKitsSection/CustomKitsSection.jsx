@@ -11,6 +11,8 @@ const CustomKitsSection = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeCard, setActiveCard] = useState(null);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   const kitCards = [
     {
@@ -45,10 +47,22 @@ const CustomKitsSection = () => {
     },
   ];
 
+  // Check of we op desktop zijn
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 1200);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   // Scroll naar geselecteerde card
   const scrollToCard = (index) => {
     if (scrollContainerRef.current) {
-      const cardWidth = 280 + 24; // card width + gap
+      const cardWidth = 260 + 24; // Aangepaste card width
       const scrollPosition = index * cardWidth;
 
       scrollContainerRef.current.scrollTo({
@@ -72,6 +86,17 @@ const CustomKitsSection = () => {
     }
   };
 
+  // Handle card click - alleen op desktop
+  const handleCardClick = (index) => {
+    if (!isDesktop) return;
+
+    if (activeCard === index) {
+      setActiveCard(null);
+    } else {
+      setActiveCard(index);
+    }
+  };
+
   // Scroll event listener voor snap functionaliteit
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -79,7 +104,7 @@ const CustomKitsSection = () => {
     const handleScroll = () => {
       if (container && window.innerWidth < 1200) {
         const scrollLeft = container.scrollLeft;
-        const cardWidth = 280 + 24; // card width + gap
+        const cardWidth = 260 + 24; // Aangepaste card width
         const newIndex = Math.round(scrollLeft / cardWidth);
         setCurrentIndex(Math.max(0, Math.min(newIndex, kitCards.length - 1)));
       }
@@ -93,7 +118,9 @@ const CustomKitsSection = () => {
 
   // Bepaal card class gebaseerd op positie
   const getCardClass = (index) => {
-    if (window.innerWidth >= 1200) return ""; // Geen speciale classes voor desktop
+    if (window.innerWidth >= 1200) {
+      return activeCard === index ? "active" : "";
+    }
 
     const position = index - currentIndex;
     const absPosition = Math.abs(position);
@@ -107,7 +134,7 @@ const CustomKitsSection = () => {
   return (
     <section className="custom-kits-section" ref={sectionRef}>
       <div className="custom-kits-container">
-        {/* Video - nu buiten de header, absoluut gepositioneerd */}
+        {/* Video */}
         <div className="custom-kits-video d-none d-md-block">
           <video autoPlay muted loop playsInline>
             <source src={sectionSmallVideo} type="video/mp4" />
@@ -121,19 +148,21 @@ const CustomKitsSection = () => {
               Custom kits that match your pace, purpose, and personality.
             </h2>
             <p className="custom-kits-description">
-              Whether you’re chasing watts, leading the local bunch, or spinning
-              to the café, Decca’s got you covered.
+              Whether you're chasing watts, leading the local bunch, or spinning
+              to the café, Decca's got you covered.
             </p>
           </div>
         </div>
 
-        {/* Cards Section - Carousel voor tablet en kleiner */}
+        {/* Cards Section */}
         <div className="custom-kits-cards-wrapper" ref={scrollContainerRef}>
           <div className="custom-kits-cards-scroll">
             {kitCards.map((card, index) => (
               <div
                 key={index}
                 className={`custom-kits-card ${getCardClass(index)}`}
+                onClick={() => handleCardClick(index)}
+                style={{ cursor: isDesktop ? "pointer" : "default" }}
               >
                 <div className="custom-kits-card-inner">
                   <div className="custom-kits-media">
@@ -163,6 +192,49 @@ const CustomKitsSection = () => {
                       custom kits for
                     </span>
                     <h3 className="custom-kits-card-title">{card.title}</h3>
+
+                    {/* Clothing links - alleen tonen in active state */}
+                    {(activeCard === index ||
+                      getCardClass(index) === "active") && (
+                      <div className="clothing-links">
+                        <a href="/product">
+                          <svg
+                            width="8"
+                            height="6"
+                            viewBox="0 0 8 6"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.33325 3L4.83325 0.5M7.33325 3L4.83325 5.5M7.33325 3L2.95825 3M0.666585 3L1.70825 3"
+                              stroke="white"
+                              strokeWidth="0.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>
+                          Shop men
+                        </a>
+                        <a href="/product">
+                          <svg
+                            width="8"
+                            height="6"
+                            viewBox="0 0 8 6"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M7.33325 3L4.83325 0.5M7.33325 3L4.83325 5.5M7.33325 3L2.95825 3M0.666585 3L1.70825 3"
+                              stroke="white"
+                              strokeWidth="0.8"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            ></path>
+                          </svg>
+                          Shop women
+                        </a>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -170,7 +242,7 @@ const CustomKitsSection = () => {
           </div>
         </div>
 
-        {/* Carousel Navigation - alleen voor tablet en kleiner */}
+        {/* Carousel Navigation */}
         <div className="carousel-navigation">
           <button
             className="carousel-btn"

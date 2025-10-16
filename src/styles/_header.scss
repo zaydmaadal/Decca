@@ -1,0 +1,20 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Header Styling
+.header {
+  // MOBILE BASE - Bootstrap handles container padding
+  text-align: center;
+  padding-top: responsive-clamp(24px, 4vh, 48px);
+  background-color: $white;
+  .logo {
+    max-height: responsive-clamp(32px, 6vh, 48px);
+  }
+
+  .tagline {
+    font-size: responsive-clamp(11px, 1.4vw, 13px);
+    color: $gray-500;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+  }
+}

@@ -1,0 +1,29 @@
+// Basic variables
+$white: #ffffff;
+$black: #000000;
+$gray-900: #333333;
+$gray-500: #959595;
+$pink: #ff215f;
+$pink-light: #e46483;
+$blue: #9fb5d8;
+
+// Compatibility mappings (map old variable names to the new basic variables)
+// This keeps existing references in the stylesheet working after replacing
+// the original variable block with a smaller set of basic variables.
+$primary-color: $gray-900;
+$secondary-color: $white;
+$accent-color: $pink;
+$off-bike-color: $blue;
+$text-muted: rgba($gray-900, 0.6);
+$gradient-pink: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) -0.23%,
+    rgba($pink, 0.35) 99.77%
+  ),
+  linear-gradient(0deg, $pink-light, $pink-light);
+$gradient-dark: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) -0.23%,
+    rgba(0, 0, 0, 0.7) 99.77%
+  ),
+  linear-gradient(0deg, $black, $black);

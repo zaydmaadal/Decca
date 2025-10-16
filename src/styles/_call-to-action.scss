@@ -1,0 +1,115 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Call to Action Styling
+.call-to-action {
+  // Mobile base styles
+  padding: 1.5rem 1rem;
+  background-color: $white;
+  text-align: center;
+  margin-bottom: 7rem;
+}
+
+.call-to-action-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.call-to-action-reveal {
+  margin-bottom: 1.5rem;
+}
+
+.call-to-action-text {
+  font-size: clamp(1.125rem, 4vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.4;
+  color: $gray-900;
+  margin-bottom: 1.5rem;
+}
+
+.call-to-action-text .word {
+  white-space: pre-wrap;
+}
+
+.call-to-action-link {
+  display: inline-block;
+  font-weight: 600;
+  color: $gray-900;
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  font-size: clamp(0.875rem, 3.5vw, 1rem);
+  transition: color 0.3s ease;
+}
+
+// Tablet (768px and up)
+@media (min-width: 768px) {
+  .call-to-action {
+    padding: 2rem 1.5rem;
+  }
+
+  .call-to-action-container {
+    max-width: min(780px, 90vw);
+  }
+
+  .call-to-action-text {
+    font-size: clamp(1.25rem, 2.6vw, 1.625rem);
+    line-height: 1.35;
+    margin-bottom: 2rem;
+  }
+
+  .call-to-action-link {
+    font-size: clamp(0.9375rem, 1.8vw, 1rem);
+    text-underline-offset: 8px;
+  }
+}
+
+// Desktop (1200px and up)
+@media (min-width: 1200px) {
+  .call-to-action {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: min(1400px, 94vw);
+    border-radius: 16px;
+    padding: clamp(1rem, 4vh, 1.75rem) 0;
+    margin-top: 1rem;
+  }
+
+  .call-to-action-container {
+    max-width: min(780px, 100%);
+  }
+
+  .call-to-action-text {
+    margin-bottom: 1.5rem;
+  }
+}
+
+// Large Desktop (1400px and up)
+@media (min-width: 1400px) {
+  .call-to-action {
+    max-width: min(1600px, 92vw);
+    padding: clamp(1.25rem, 4vh, 2rem) 0;
+  }
+}
+
+// Extra Large Desktop (1600px and up)
+@media (min-width: 1600px) {
+  .call-to-action {
+    max-width: min(1800px, 90vw);
+  }
+}
+
+@media (max-width: 768px) {
+  .CallToAction {
+    padding: responsive-clamp(20px, 6vh, 32px) 20px;
+
+    h2 {
+      font-size: responsive-clamp(18px, 3.8vw, 22px);
+    }
+
+    a {
+      font-size: responsive-clamp(13px, 2.4vw, 15px);
+    }
+  }
+}

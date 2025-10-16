@@ -15,6 +15,7 @@ const ClothingSection = () => {
   return (
     <div className="clothing-section">
       <OnBikeContent />
+      <OffBikeContent />
     </div>
   );
 };

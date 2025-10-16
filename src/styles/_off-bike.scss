@@ -1,0 +1,173 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// ===== OFF-BIKE HERO SECTION =====
+// Independent from .clothing-section nesting
+
+.off-bike-header-wrapper {
+  position: relative;
+  max-width: clamp(560px, 70%, 900px);
+  margin: responsive-clamp(80px, 14vh, 160px) auto 0;
+
+  h2 {
+    font-size: responsive-clamp(24px, 3.6vw, 32px);
+    font-weight: 600;
+    color: #000000;
+    max-width: 860px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .off-bike-tag {
+    position: absolute;
+    top: clamp(-38px, -3vh, -43px);
+    left: 0;
+    background: $off-bike-color;
+    color: $secondary-color;
+    padding: responsive-clamp(6px, 1.6vw, 8px)
+      responsive-clamp(12px, 2.2vw, 16px);
+    border-radius: 999px;
+    font-size: responsive-clamp(14px, 2vw, 16px);
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 10;
+    transform: rotate(-10deg);
+  }
+}
+
+.off-bike-items-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: responsive-clamp(28px, 6vh, 44px);
+}
+
+#off-bike-hero {
+  background: none;
+  width: 100%;
+  max-width: min(1400px, 96vw);
+  margin: 0 auto;
+  border-radius: 12px;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  height: 450px;
+
+  // Mobile & Tablet: Full screen width and height
+  @media (max-width: 1199px) {
+    width: 100vw;
+    max-width: none;
+    margin-left: calc(-50vw + 50%);
+    border-radius: 0;
+    aspect-ratio: auto;
+    height: 80vh;
+  }
+
+  // Mobile height adjustment
+  @media (max-width: 768px) {
+    height: 70vh;
+  }
+
+  .off-bike-video {
+    @include absolute-cover;
+    object-fit: cover;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+  }
+
+  .off-bike-content {
+    width: auto;
+    max-width: calc(100% - 24px);
+    border-radius: 10px;
+    color: $secondary-color;
+    padding: responsive-clamp(12px, 3vw, 18px);
+    position: absolute;
+    bottom: responsive-clamp(12px, 3vw, 20px);
+    left: responsive-clamp(12px, 3vw, 20px);
+    display: grid;
+    grid-auto-rows: min-content;
+    row-gap: responsive-clamp(6px, 1.6vw, 10px);
+    background: $gradient-dark;
+    z-index: 2;
+
+    // Mobile & Tablet: Center content for better visibility
+    @media (max-width: 768px) {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: center;
+    }
+
+    h3 {
+      font-size: responsive-clamp(16px, 2.6vw, 20px);
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-transform: capitalize;
+    }
+
+    span {
+      font-size: responsive-clamp(11px, 1.8vw, 13px);
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+
+    .clothing-links {
+      display: flex;
+      gap: responsive-clamp(8px, 1.8vw, 12px);
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        color: $secondary-color;
+        text-decoration: none;
+        font-size: responsive-clamp(10px, 1.6vw, 12px);
+        font-weight: 700;
+        padding: responsive-clamp(5px, 1.6vw, 7px)
+          responsive-clamp(8px, 2.2vw, 12px);
+        border: 2px solid $secondary-color;
+        border-radius: 999px;
+        @include flex-center;
+        gap: 4px;
+        white-space: nowrap;
+        transition: all 0.4s ease;
+
+        svg path {
+          transition: stroke 0.4s ease;
+        }
+
+        &:hover {
+          background: $secondary-color;
+          color: #000000;
+          text-decoration: none;
+
+          svg path {
+            stroke: #000000;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .off-bike-header-wrapper .off-bike-tag {
+    top: -37px;
+    left: 0;
+  }
+
+  #off-bike-hero {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .off-bike-header-wrapper {
+    margin: responsive-clamp(60px, 12vh, 120px) auto 0;
+
+    .off-bike-tag {
+      top: -32px;
+      font-size: responsive-clamp(12px, 2vw, 14px);
+    }
+  }
+}
