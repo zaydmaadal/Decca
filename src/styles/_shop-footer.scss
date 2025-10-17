@@ -1,0 +1,75 @@
+@use "variables" as *;
+
+// Shop Footer Section - Overrides voor custom-kits-section
+.shop-footer-section {
+  margin-bottom: 4rem !important;
+  
+  // Adjacent card: alleen blur, geen brightness, meer blur
+  .custom-kits-card.adjacent {
+    filter: blur(3px);
+  }
+  // Aangepaste achtergrondkleur
+  background-color: #fff5f5;
+  background-image: none;
+
+  // Header tekst kleur naar zwart
+  .custom-kits-header {
+    .custom-kits-text {
+      .custom-kits-title,
+      .custom-kits-description {
+        color: $black;
+      }
+    }
+  }
+
+  // Verberg de video (indien aanwezig)
+  .custom-kits-video {
+    display: none !important;
+  }
+
+  // Betere contrast/accessible carousel navigation
+  .carousel-navigation {
+    .carousel-btn {
+      background: rgba(30, 30, 30, 0.65); // Donkerder met opacity
+      color: $white;
+
+      &:hover:not(:disabled) {
+        background: rgba(30, 30, 30, 0.85); // Nog donkerder bij hover
+      }
+    }
+  }
+
+  // Active card styling met pink achtergrond
+  .custom-kits-card.active {
+    background: #ff215f !important;
+
+    .custom-kits-content {
+      .custom-kits-subtitle,
+      .custom-kits-card-title {
+        color: $white;
+      }
+    }
+
+    .custom-kits-tag {
+      background: transparent;
+      border: 1px solid $white;
+      color: $white;
+
+      &.pink,
+      &.white {
+        background: transparent;
+        border: 1px solid $white;
+        color: $white;
+      }
+    }
+  }
+
+  // Desktop active state override
+  @media (min-width: 1200px) {
+    .custom-kits-cards-wrapper {
+      .custom-kits-card.active {
+        background: #ff215f !important;
+      }
+    }
+  }
+}

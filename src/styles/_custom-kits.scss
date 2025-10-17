@@ -161,6 +161,22 @@
         overflow: hidden;
         margin-bottom: 0.5rem; // Minder margin
 
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 100%;
+          height: 40%; // alleen onderkant
+          backdrop-filter: blur(12px); // hoeveelheid blur
+          mask-image: linear-gradient(
+            to top,
+            rgba(0, 0, 0, 1),
+            rgba(0, 0, 0, 0)
+          ); // maakt de blur geleidelijk
+          pointer-events: none;
+        }
+
         video,
         img {
           width: 100%;

@@ -4,6 +4,7 @@ import HeroSection from "../../components/home/HeroSection/HeroSection";
 import CallToAction from "../../components/home/CallToAction/CallToAction";
 import CustomKitsSection from "../../components/home/CustomKitsSection/CustomKitsSection";
 import ClothingSection from "../../components/home/ClothingSection/ClothingSection";
+import ShopFooter from "../../components/home/ShopFooter/ShopFooter";
 import { initHeroBlurAnimation } from "../../animations/heroBlur";
 import { initHeroRotateAnimation } from "../../animations/heroRotate";
 
@@ -32,7 +33,7 @@ const Home = () => {
       <CallToAction ctaContainerRef={ctaContainerRef} />
       <CustomKitsSection />
       <ClothingSection />
-      <CustomKitsSection />
+      <ShopFooter />
     </>
   );
 };
