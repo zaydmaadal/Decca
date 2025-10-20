@@ -5,7 +5,7 @@
   // Mobile styles (default)
   position: relative;
   margin-left: calc(-50vw + 50%);
-  height: clamp(300px, 60vh, 500px);
+  height: clamp(300px, 50vw, 500px);
   overflow: hidden;
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -42,7 +42,7 @@
   }
 
   .hero-logo {
-    max-height: clamp(80px, 20vh, 150px);
+    max-height: clamp(80px, 15vw, 150px);
     height: auto;
     width: auto;
     display: block;
@@ -50,7 +50,7 @@
 
   // Tablet (768px and up)
   @media (min-width: 768px) {
-    height: clamp(420px, 82vh, 880px);
+    height: clamp(420px, 35vw, 880px);
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 
@@ -59,7 +59,7 @@
     }
 
     .hero-logo {
-      max-height: clamp(120px, 22vh, 220px);
+      max-height: clamp(120px, 18vw, 220px);
     }
   }
 
@@ -84,5 +84,59 @@
 @media (max-width: 768px) {
   .hero-video {
     object-position: center;
+  }
+}
+
+// Hero Section for Product Page - Mobile First
+.hero-section-product {
+  .hero-overlay {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 3vw, 2rem);
+    justify-content: center;
+    flex-direction: column;
+    padding: clamp(1rem, 4vw, 2rem);
+
+    .hero-logo {
+      height: clamp(2rem, 6vw, 3.125rem); // 32px to 50px
+      width: auto;
+    }
+
+    .hero-text {
+      color: #fff;
+      font-size: clamp(1.75rem, 6vw, 3.125rem); // 28px to 50px
+      font-weight: 700;
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    // Tablet (768px and up)
+    @media (min-width: 768px) {
+      flex-direction: row;
+      gap: clamp(1.5rem, 3vw, 2rem);
+
+      .hero-logo {
+        height: clamp(2.5rem, 5vw, 3.125rem); // 40px to 50px
+      }
+
+      .hero-text {
+        font-size: clamp(2rem, 5vw, 3.125rem); // 32px to 50px
+        text-align: left;
+      }
+    }
+
+    // Desktop (1200px and up)
+    @media (min-width: 1200px) {
+      gap: 2rem;
+
+      .hero-logo {
+        height: 3.125rem; // 50px
+      }
+
+      .hero-text {
+        font-size: 3.125rem; // 50px
+        line-height: 1;
+      }
+    }
   }
 }

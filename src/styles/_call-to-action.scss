@@ -72,7 +72,7 @@
     margin-right: auto;
     max-width: min(1400px, 94vw);
     border-radius: 16px;
-    padding: clamp(1rem, 4vh, 1.75rem) 0;
+    padding: clamp(1rem, 3vw, 1.75rem) 0;
     margin-top: 1rem;
   }
 
@@ -89,7 +89,7 @@
 @media (min-width: 1400px) {
   .call-to-action {
     max-width: min(1600px, 92vw);
-    padding: clamp(1.25rem, 4vh, 2rem) 0;
+    padding: clamp(1.25rem, 3vw, 2rem) 0;
   }
 }
 
@@ -102,7 +102,7 @@
 
 @media (max-width: 768px) {
   .CallToAction {
-    padding: responsive-clamp(20px, 6vh, 32px) 20px;
+    padding: responsive-clamp(20px, 4vw, 32px) 20px;
 
     h2 {
       font-size: responsive-clamp(18px, 3.8vw, 22px);

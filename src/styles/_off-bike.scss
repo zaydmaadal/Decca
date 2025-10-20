@@ -7,7 +7,7 @@
 .off-bike-header-wrapper {
   position: relative;
   max-width: clamp(560px, 70%, 900px);
-  margin: responsive-clamp(80px, 14vh, 160px) auto 0;
+  margin: responsive-clamp(80px, 10vw, 160px) auto 0;
 
   h2 {
     font-size: responsive-clamp(24px, 3.6vw, 32px);
@@ -20,7 +20,7 @@
 
   .off-bike-tag {
     position: absolute;
-    top: clamp(-38px, -3vh, -43px);
+    top: clamp(-38px, -2.5vw, -43px);
     left: 0;
     background: $off-bike-color;
     color: $secondary-color;
@@ -38,7 +38,7 @@
 .off-bike-items-wrapper {
   display: flex;
   justify-content: center;
-  margin-top: responsive-clamp(28px, 6vh, 44px);
+  margin-top: responsive-clamp(28px, 4vw, 44px);
 }
 
 #off-bike-hero {
@@ -59,12 +59,12 @@
     margin-left: calc(-50vw + 50%);
     border-radius: 0;
     aspect-ratio: auto;
-    height: 80vh;
+    height: clamp(500px, 80vw, 800px);
   }
 
   // Mobile height adjustment
   @media (max-width: 768px) {
-    height: 70vh;
+    height: clamp(400px, 70vw, 600px);
   }
 
   .off-bike-video {
@@ -163,7 +163,7 @@
 
 @media (max-width: 480px) {
   .off-bike-header-wrapper {
-    margin: responsive-clamp(60px, 12vh, 120px) auto 0;
+    margin: responsive-clamp(60px, 10vw, 120px) auto 0;
 
     .off-bike-tag {
       top: -32px;
