@@ -35,7 +35,9 @@ const OnBikeContent = () => (
         For athletes seeking ready-to-wear performance, discover Decca's
         seasonal off-the-shelf essentials.
       </ScrollReveal>
-      <TagReveal className="tag">on bike</TagReveal>
+      <TagReveal className="tag" rotation={10}>
+        on bike
+      </TagReveal>
     </div>
 
     <div className="clothing-items-wrapper">
@@ -48,7 +50,9 @@ const OnBikeContent = () => (
 const OffBikeContent = () => (
   <>
     <div className="off-bike-header-wrapper">
-      <TagReveal className="tag off-bike-tag">off-bike</TagReveal>
+      <TagReveal className="tag off-bike-tag" rotation={-10}>
+        off-bike
+      </TagReveal>
       <ScrollReveal
         baseOpacity={0.05}
         enableBlur={true}

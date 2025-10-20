@@ -8,7 +8,7 @@ const Header = () => (
         {/* Bootstrap spacing ipv custom margin */}
         <div className="logo-container mb-3 mb-md-4">
           <Link
-            to="/product"
+            to="/"
             aria-label="Terug naar de startpagina"
             className="d-block"
           >
