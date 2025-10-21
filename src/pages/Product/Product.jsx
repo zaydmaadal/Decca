@@ -4,6 +4,7 @@ import { initHeroBlurAnimation } from "../../animations/heroBlur";
 import { initHeroRotateAnimation } from "../../animations/heroRotate";
 import HeroSection from "../../components/product/HeroSection/HeroSection";
 import ClothingSection from "../../components/product/ClothingSection/ClothingSection";
+import Footer from "../../components/product/Footer/Footer";
 
 const Product = () => {
   const overlayRef = useRef(null);
@@ -27,7 +28,8 @@ const Product = () => {
   return (
     <>
       <HeroSection overlayRef={overlayRef} logoRef={logoRef} />
-      <ClothingSection />
+      <ClothingSection ctaContainerRef={ctaContainerRef} />
+      <Footer ctaContainerRef={ctaContainerRef} />
     </>
   );
 };

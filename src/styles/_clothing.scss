@@ -2,13 +2,19 @@
 @use "mixins" as *;
 
 .clothing-section {
-  width: min(1400px, 96vw);
-  margin: responsive-clamp(48px, 8vw, 96px) auto;
+  width: 100%;
+  margin: responsive-clamp(48px, 8vw, 96px) 0;
 
   .clothing-header-wrapper {
     position: relative;
     max-width: clamp(560px, 70%, 900px);
     margin: 0 auto;
+    padding: 0 2vw;
+
+    @media (min-width: 1024px) {
+      width: min(1400px, 96vw);
+      padding: 0;
+    }
 
     h2 {
       font-size: responsive-clamp(24px, 3.6vw, 32px);
@@ -47,6 +53,14 @@
     gap: responsive-clamp(20px, 3vw, 32px);
     margin-top: responsive-clamp(24px, 4vw, 40px);
     width: 100%;
+    padding: 0 2vw;
+
+    @media (min-width: 1024px) {
+      width: min(1400px, 96vw);
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0;
+    }
 
     article {
       background-size: cover;
@@ -264,104 +278,289 @@
 
 //Clothing Section Product - Mobile First
 .clothing-section-product {
-  // Mobile styles (default)
   position: relative;
+  margin: 1rem 0;
   margin-left: calc(-50vw + 50%);
   width: 100vw;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  padding: 0 clamp(1.5rem, 5vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 
   .clothing-section-header {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: clamp(1rem, 4vw, 1.5rem);
-    padding: clamp(1rem, 4vw, 2rem) clamp(1rem, 4vw, 2rem);
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1.5rem, 5vw, 2.5rem);
+    width: 100%;
+    position: relative;
+    top: -80px;
+    z-index: 9;
 
-    // Tablet (768px and up)
     @media (min-width: 768px) {
+      gap: clamp(2rem, 4vw, 3rem);
+      top: -165px;
+    }
+
+    @media (min-width: 1200px) {
       flex-direction: row;
       align-items: flex-end;
-      gap: clamp(1.5rem, 3vw, 2rem);
-      padding: clamp(1.5rem, 3vw, 2rem) clamp(1.5rem, 4vw, 2.5rem);
-    }
-
-    // Desktop (1200px and up)
-    @media (min-width: 1200px) {
+      justify-content: space-between;
+      text-align: left;
       gap: 2rem;
-      padding: 2rem clamp(2rem, 4vw, 3rem);
-    }
-  }
-
-  // Product ClothingSection header text styles - Mobile First
-  .clothing-section-text {
-    font-size: clamp(1.5rem, 5vw, 2rem); // 24px to 32px on mobile
-    font-weight: 700;
-    color: #414141;
-    line-height: 1.2;
-    flex: 1;
-    max-width: 100%;
-
-    // Tablet (768px and up)
-    @media (min-width: 768px) {
-      font-size: clamp(1.75rem, 4vw, 2.25rem); // 28px to 36px
-      line-height: 1.25;
-    }
-
-    // Large tablet / Small desktop (1024px and up)
-    @media (min-width: 1024px) {
-      font-size: clamp(2rem, 3.5vw, 2.5rem); // 32px to 40px
-      line-height: 1.1;
-    }
-
-    // Desktop (1200px and up)
-    @media (min-width: 1200px) {
-      font-size: 2.5rem; // 40px
-      line-height: 2.75rem; // 44px
     }
   }
 
   .clothing-section-image {
     display: flex;
+    justify-content: center;
     align-items: flex-end;
-    justify-content: flex-start;
     width: 100%;
 
     img {
-      height: auto;
       width: auto;
-      max-width: clamp(120px, 30vw, 180px);
+      height: auto;
+      max-width: clamp(220px, 60vw, 360px);
 
-      // Tablet (768px and up)
       @media (min-width: 768px) {
-        max-width: clamp(150px, 25vw, 200px);
+        max-width: clamp(300px, 50vw, 420px);
       }
 
-      // Desktop (1200px and up)
       @media (min-width: 1200px) {
         max-width: none;
       }
     }
 
-    // Tablet (768px and up)
-    @media (min-width: 768px) {
-      width: auto;
+    @media (min-width: 1200px) {
       justify-content: flex-end;
+      width: auto;
     }
   }
 
-  // Tablet (768px and up)
-  @media (min-width: 768px) {
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+  .clothing-section-text {
+    font-size: clamp(1.25rem, 4.5vw, 1.75rem);
+    font-weight: 700;
+    color: #414141;
+    line-height: 1.3;
+
+    @media (min-width: 768px) {
+      max-width: 80%;
+      font-size: clamp(1.75rem, 4vw, 2.25rem);
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 650px;
+      h2 {
+        margin: 0;
+      }
+      p {
+        margin-bottom: 0;
+      }
+    }
   }
 
-  // Desktop (1200px and up)
+  @media (min-width: 768px) {
+    margin: 1.5rem 0;
+  }
+
   @media (min-width: 1200px) {
-    width: auto;
     margin-left: auto;
     margin-right: auto;
+    width: auto;
     max-width: min(1800px, 96vw);
+  }
+
+  .clothing-header-wrapper {
+    position: relative;
+    max-width: clamp(560px, 90%, 900px);
+    margin: 0 auto;
+
+    .clothing-scroll-reveal {
+      font-size: clamp(1.5rem, 5vw, 2.5rem);
+      font-weight: 700;
+      color: #000000;
+      text-align: center;
+      line-height: 1.2;
+
+      @media (min-width: 768px) {
+        font-size: clamp(2rem, 4vw, 3rem);
+      }
+    }
+
+    .tag {
+      position: absolute;
+      top: clamp(-24px, -4vw, -16px);
+      right: -5%;
+      transform: rotate(10deg);
+      transform-origin: 100% 50%;
+      background-color: $green-light;
+      color: $secondary-color;
+      min-width: 88px;
+      height: clamp(30px, 3.5vw, 38px);
+      padding: 0 clamp(12px, 2vw, 16px);
+      @include flex-center;
+      border-radius: 999px;
+      font-size: clamp(14px, 2vw, 16px);
+      font-weight: 600;
+      white-space: nowrap;
+      z-index: 5;
+      will-change: transform;
+
+      @media (min-width: 768px) {
+        right: 0;
+      }
+    }
+
+    // Winter tag styling - left side with -10 rotation
+    &.clothing-header-wrapper-winter {
+      margin-top: clamp(4rem, 8vw, 8rem);
+
+      .tag-winter {
+        left: -5%;
+        right: auto;
+        transform: rotate(-10deg);
+        transform-origin: 0% 50%;
+        background-color: #7d8d6c;
+
+        @media (min-width: 768px) {
+          left: 0;
+        }
+      }
+    }
+  }
+
+  // Bundle Items - Mobile First
+  .bundle-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex: 1;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .bundle-item {
+    background-color: #eee;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 0;
+    height: 260px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    margin-bottom: 0;
+
+    .bundle-item-video {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .bundle-item-content-overlay {
+      width: 100%;
+      color: #2c2c2c;
+      padding: 0.5rem 1rem;
+      border-radius: 0 0 16px 16px;
+      text-align: left;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      font-size: 0.95rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      z-index: 3;
+    }
+
+    .bundle-item-title {
+      font-weight: 700;
+      font-size: 1rem;
+      margin: 0 0 0.1rem 0;
+    }
+
+    .bundle-item-subtitle {
+      margin: 0;
+      opacity: 0.85;
+      font-weight: 600;
+    }
+    //after
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 40%; // alleen onderkant
+      backdrop-filter: blur(20px); // hoeveelheid blur
+      mask-image: linear-gradient(
+        to top,
+        rgb(0, 0, 0),
+        rgba(0, 0, 0, 0)
+      ); // maakt de blur geleidelijk
+      pointer-events: none;
+      z-index: 2;
+    }
+  }
+
+  // Force 1 column on mobile, 3 on desktop, never wrap
+  .row {
+    flex-wrap: nowrap !important;
+  }
+  .col-12.col-lg-4 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    .row {
+      flex-direction: column !important;
+      flex-wrap: nowrap !important;
+    }
+    .col-12.col-lg-4 {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 992px) {
+    .row {
+      flex-direction: row !important;
+      flex-wrap: nowrap !important;
+    }
+    .col-12.col-lg-4 {
+      width: 33.3333%;
+      max-width: 33.3333%;
+    }
+  }
+
+  .discover-link {
+    display: inline-block;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 600;
+    color: #000000;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    transition: color 0.3s ease, text-decoration-color 0.3s ease;
+
+    &:hover {
+      color: $green-light;
+      text-decoration-color: $green-light;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1rem;
+    }
   }
 }

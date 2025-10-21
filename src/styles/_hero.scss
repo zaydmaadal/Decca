@@ -98,13 +98,17 @@
     padding: clamp(1rem, 4vw, 2rem);
 
     .hero-logo {
-      height: clamp(2rem, 6vw, 3.125rem); // 32px to 50px
+      height: clamp(2.5rem, 8vw, 3.75rem); // 40px to 60px (larger on mobile)
       width: auto;
     }
 
     .hero-text {
       color: #fff;
-      font-size: clamp(1.75rem, 6vw, 3.125rem); // 28px to 50px
+      font-size: clamp(
+        1.5rem,
+        5vw,
+        2.75rem
+      ); // 24px to 44px (smaller on mobile)
       font-weight: 700;
       line-height: 1.1;
       text-align: center;
@@ -116,11 +120,19 @@
       gap: clamp(1.5rem, 3vw, 2rem);
 
       .hero-logo {
-        height: clamp(2.5rem, 5vw, 3.125rem); // 40px to 50px
+        height: clamp(
+          2.75rem,
+          5.5vw,
+          3.75rem
+        ); // 44px to 60px (bigger than before)
       }
 
       .hero-text {
-        font-size: clamp(2rem, 5vw, 3.125rem); // 32px to 50px
+        font-size: clamp(
+          1.875rem,
+          4.5vw,
+          3.125rem
+        ); // 30px to 50px (slightly smaller)
         text-align: left;
       }
     }

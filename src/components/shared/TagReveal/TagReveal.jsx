@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const TagReveal = ({ children, className = "" }) => {
+const TagReveal = ({ children, className = "", rotation = 0 }) => {
   const tagRef = useRef(null);
 
   useEffect(() => {
@@ -16,17 +16,24 @@ const TagReveal = ({ children, className = "" }) => {
     ).matches;
 
     if (prefersReducedMotion) {
-      gsap.set(el, { opacity: 1, y: 0, scale: 1 });
+      gsap.set(el, { opacity: 1, y: 0, scale: 1, rotation });
       return;
     }
 
     // Force initial hidden state FIRST
-    gsap.set(el, { opacity: 0, y: 18, scale: 0.94 });
+    gsap.set(el, { opacity: 0, y: 18, scale: 0.94, rotation });
 
     const animation = gsap.fromTo(
       el,
-      { opacity: 0, y: 18, scale: 0.94 },
-      { opacity: 1, y: 0, scale: 1, duration: 0.8, ease: "power2.out" }
+      { opacity: 0, y: 18, scale: 0.94, rotation },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        rotation,
+        duration: 0.8,
+        ease: "power2.out",
+      }
     );
 
     const trigger = ScrollTrigger.create({
@@ -44,7 +51,7 @@ const TagReveal = ({ children, className = "" }) => {
     return () => {
       trigger.kill();
     };
-  }, []);
+  }, [rotation]);
 
   return (
     <span ref={tagRef} className={className}>

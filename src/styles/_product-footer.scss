@@ -1,0 +1,192 @@
+@use "variables" as *;
+@use "mixins" as *;
+
+// Product Footer - Mobile First
+.product-footer {
+  position: relative;
+  width: 100%;
+  margin: clamp(3rem, 8vw, 6rem) 0;
+  padding: 0;
+
+  .product-footer-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .product-footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  // Header (Title) - Always on top on mobile/tablet
+  .product-footer-header {
+    order: 1;
+    padding: 0 clamp(1.5rem, 5vw, 2.5rem);
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+  }
+
+  .product-footer-title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    color: $gray-900;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  // Video - Full width on mobile (under 768px), more height
+  .product-footer-video-wrapper {
+    order: 2;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    position: relative;
+    aspect-ratio: 3 / 4; // More height on mobile
+    overflow: hidden;
+    border-radius: 0;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+    max-height: 550px;
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      width: 100%;
+      height: 60%;
+      backdrop-filter: blur(20px);
+      mask-image: linear-gradient(to top, rgb(0, 0, 0), rgba(0, 0, 0, 0));
+      pointer-events: none;
+      z-index: 2;
+    }
+  }
+
+  .product-footer-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  // Text Content - Last on mobile
+  .product-footer-text {
+    order: 3;
+    padding: 0 clamp(1.5rem, 5vw, 2.5rem);
+
+    p {
+      font-size: clamp(1rem, 2.5vw, 1.125rem);
+      line-height: 1.6;
+      color: $gray-900;
+      margin: 0 0 1rem 0;
+      font-weight: 500;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Show/hide text based on breakpoint
+  .product-footer-text-desktop {
+    display: none; // Hidden on mobile
+  }
+
+  .product-footer-text-mobile {
+    display: block; // Visible on mobile
+  }
+
+  // Desktop (768px and up)
+  @media (min-width: 768px) {
+    padding: 0 clamp(1.5rem, 5vw, 2.5rem);
+
+    .product-footer-container {
+      max-width: min(1800px, 96vw);
+      margin: 0 auto;
+    }
+
+    .product-footer-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: clamp(2rem, 3vw, 2.5rem);
+      align-items: start;
+    }
+
+    // Header in left column, above text content on desktop
+    .product-footer-header {
+      grid-column: 1;
+      grid-row: 1;
+      order: unset;
+      padding: 0;
+      margin-bottom: 0;
+    }
+
+    .product-footer-title {
+      font-size: clamp(2rem, 3.5vw, 2.75rem);
+      max-width: 100%;
+    }
+
+    // Text content - left column, below title
+    .product-footer-text {
+      grid-column: 1;
+      grid-row: 2;
+      order: unset;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      p {
+        font-size: clamp(1.125rem, 2vw, 1.25rem);
+      }
+    }
+
+    // Show desktop text, hide mobile text on 768px+
+    .product-footer-text-desktop {
+      display: flex; // Show on desktop
+    }
+
+    .product-footer-text-mobile {
+      display: none; // Hide on desktop
+    }
+
+    // Video - right column, spans both rows, portrait, less height
+    .product-footer-video-wrapper {
+      grid-column: 2;
+      grid-row: 1 / -1; // Span both rows
+      order: unset;
+      width: 100%;
+      margin-left: 0;
+      aspect-ratio: 3 / 4; // Portrait but less extreme
+      border-radius: 16px;
+      margin-bottom: 0;
+      height: auto;
+      min-height: 650px;
+    }
+  }
+
+  // Large Desktop (1200px and up) - Even smaller height
+  @media (min-width: 1200px) {
+    .product-footer-title {
+      font-size: 2.75rem;
+    }
+
+    .product-footer-content {
+      gap: clamp(2.5rem, 4vw, 3.5rem);
+    }
+
+    .product-footer-video-wrapper {
+      min-height: 650px;
+      max-height: 700px;
+      border-radius: 20px;
+    }
+
+    .product-footer-text {
+      gap: 2rem;
+
+      p {
+        font-size: 1.25rem;
+      }
+    }
+  }
+}
