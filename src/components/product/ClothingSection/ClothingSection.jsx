@@ -31,7 +31,18 @@ const ClothingSection = ({ ctaContainerRef }) => {
       </ScrollReveal>
 
       <div className="clothing-section-image">
-        <img src={logoHeaderClothing} alt="Clothing Logo" />
+        <video
+          src={JerseyVideo}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+        />
       </div>
     </header>
   );

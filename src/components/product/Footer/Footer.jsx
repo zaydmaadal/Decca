@@ -31,18 +31,7 @@ const Footer = () => {
                   stagger={0.1}
                 >
                   Combine company names & company purpose in written form to
-                  give it a cohesive look
-                </ScrollReveal>
-              </p>
-              <p>
-                <ScrollReveal
-                  baseOpacity={0.06}
-                  enableBlur={true}
-                  baseRotation={0}
-                  blurStrength={10}
-                  stagger={0.1}
-                >
-                  Group logo's for a daft looking design
+                  give it a cohesive look Group logo's for a daft looking design
                 </ScrollReveal>
               </p>
             </div>
