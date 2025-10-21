@@ -5,8 +5,11 @@
 .product-footer {
   position: relative;
   width: 100%;
-  margin: clamp(3rem, 8vw, 6rem) 0;
   padding: 0;
+  // Spacing boven footer op desktop/tablet
+  @media (min-width: 768px) {
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
 
   .product-footer-container {
     width: 100%;
@@ -124,6 +127,7 @@
     .product-footer-title {
       font-size: clamp(2rem, 3.5vw, 2.75rem);
       max-width: 100%;
+      margin-bottom: clamp(2rem, 3vw, 2.5rem);
     }
 
     // Text content - left column, below title
@@ -169,6 +173,7 @@
   @media (min-width: 1200px) {
     .product-footer-title {
       font-size: 2.75rem;
+      margin-bottom: 3rem;
     }
 
     .product-footer-content {
@@ -176,8 +181,8 @@
     }
 
     .product-footer-video-wrapper {
-      min-height: 650px;
-      max-height: 700px;
+      min-height: 600px;
+      max-height: 650px;
       border-radius: 20px;
     }
 

@@ -11,6 +11,8 @@ const Footer = () => {
           <header className="product-footer-header">
             <h2 className="product-footer-title">
               <ScrollReveal
+                as="span"
+                innerTag="span"
                 baseOpacity={0.06}
                 enableBlur={true}
                 baseRotation={0}
@@ -24,6 +26,8 @@ const Footer = () => {
             <div className="product-footer-text product-footer-text-desktop">
               <p>
                 <ScrollReveal
+                  as="span"
+                  innerTag="span"
                   baseOpacity={0.06}
                   enableBlur={true}
                   baseRotation={0}
@@ -52,7 +56,7 @@ const Footer = () => {
           <div className="product-footer-text product-footer-text-mobile">
             <p>
               Combine company names & company purpose in written form to give it
-              a cohesive look = Group logo's for a daft looking design
+              a cohesive look. Group logo's for a daft looking design
             </p>
           </div>
         </div>

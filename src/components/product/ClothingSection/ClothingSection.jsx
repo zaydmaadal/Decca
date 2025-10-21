@@ -1,9 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollReveal from "../../shared/ScrollReveal/ScrollReveal";
 import TagReveal from "../../shared/TagReveal/TagReveal";
 import VariableProximity from "../../shared/VariableProximity/VariableProximity";
 
-import logoHeaderClothing from "../../../assets/images/logo-header-product.png";
 import JerseyVideo from "../../../assets/videos/Jersey.mp4";
 import BibsVideo from "../../../assets/videos/Bibs.mp4";
 import SocksVideo from "../../../assets/videos/Socks.mp4";
@@ -16,36 +17,70 @@ const ClothingSection = ({ ctaContainerRef }) => {
       if (typeof cleanup === "function") cleanup();
     };
   }, []);
-  const Header = () => (
-    <header className="clothing-section-header mb-4 mb-md-5">
-      <ScrollReveal
-        baseOpacity={0.05}
-        enableBlur={true}
-        baseRotation={0}
-        blurStrength={12}
-        stagger={0.2}
-        containerClassName="clothing-section-text"
-      >
-        At Decca, we select only premium materials tailored to your ride, with
-        our designers bringing style to every detail.
-      </ScrollReveal>
 
-      <div className="clothing-section-image">
-        <video
-          src={JerseyVideo}
-          autoPlay
-          loop
-          muted
-          playsInline
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "contain",
-          }}
-        />
-      </div>
-    </header>
-  );
+  const headerVideoRef = useRef(null);
+
+  const Header = () => {
+    // Slide-in animatie voor video
+    useEffect(() => {
+      const el = headerVideoRef.current;
+      if (!el) return;
+      gsap.fromTo(
+        el,
+        { y: 80, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "top 85%",
+            end: "top 60%",
+            scrub: 1,
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+      return () => {
+        ScrollTrigger.getAll().forEach((trigger) => {
+          if (trigger.trigger === el) trigger.kill();
+        });
+      };
+    }, []);
+
+    return (
+      <header className="clothing-section-header mb-4 mb-md-5">
+        <ScrollReveal
+          baseOpacity={0.05}
+          enableBlur={true}
+          baseRotation={0}
+          blurStrength={12}
+          stagger={0.2}
+          containerClassName="clothing-section-text"
+        >
+          At Decca, we select only premium materials tailored to your ride, with
+          our designers bringing style to every detail.
+        </ScrollReveal>
+
+        <div className="clothing-section-image">
+          <video
+            ref={headerVideoRef}
+            src={JerseyVideo}
+            autoPlay
+            loop
+            muted
+            playsInline
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "contain",
+            }}
+          />
+        </div>
+      </header>
+    );
+  };
 
   const summerItems = [
     {

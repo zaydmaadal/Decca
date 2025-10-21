@@ -16,6 +16,8 @@ const ScrollReveal = ({
   textClassName = "",
   rotationEnd = "center center",
   wordAnimationEnd = "center center",
+  as: Tag = "div",
+  innerTag: InnerTag = "span",
 }) => {
   const containerRef = useRef(null);
 
@@ -133,9 +135,11 @@ const ScrollReveal = ({
   ]);
 
   return (
-    <h2 ref={containerRef} className={`scroll-reveal ${containerClassName}`}>
-      <p className={`scroll-reveal-text ${textClassName}`}>{splitText}</p>
-    </h2>
+    <Tag ref={containerRef} className={`scroll-reveal ${containerClassName}`}>
+      <InnerTag className={`scroll-reveal-text ${textClassName}`}>
+        {splitText}
+      </InnerTag>
+    </Tag>
   );
 };
 
