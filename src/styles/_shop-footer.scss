@@ -9,13 +9,8 @@
     filter: blur(3px);
   }
   // Aangepaste achtergrondkleur
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) -0.23%,
-      rgba(255, 245, 245, 0.8) 0.4%
-    ),
-    linear-gradient(0deg, #ff215f, #fff5f5);
-  backdrop-filter: blur(5px);
+  background: linear-gradient(1deg, #e46484ab, rgba(228, 100, 132, 0.144));
+  backdrop-filter: blur(15px);
 
   // Header tekst kleur naar zwart
   .custom-kits-header {
