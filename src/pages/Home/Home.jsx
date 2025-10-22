@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import HeroSection from "../../components/home/HeroSection/HeroSection";
 import CallToAction from "../../components/home/CallToAction/CallToAction";
@@ -12,6 +12,7 @@ const Home = () => {
   const overlayRef = useRef(null);
   const logoRef = useRef(null);
   const ctaContainerRef = useRef(null);
+  const [step, setStep] = useState(0);
 
   useEffect(() => {
     const cleanup = initHeroBlurAnimation(overlayRef.current);
@@ -27,13 +28,20 @@ const Home = () => {
     };
   }, []);
 
+  // sequential mount: advance a step every 120ms until all are shown
+  useEffect(() => {
+    if (step >= 4) return;
+    const t = setTimeout(() => setStep((s) => s + 1), 120);
+    return () => clearTimeout(t);
+  }, [step]);
+
   return (
     <>
-      <HeroSection overlayRef={overlayRef} logoRef={logoRef} />
-      <CallToAction ctaContainerRef={ctaContainerRef} />
-      <CustomKitsSection />
-      <ClothingSection />
-      <ShopFooter />
+      {step >= 0 && <HeroSection overlayRef={overlayRef} logoRef={logoRef} />}
+      {step >= 1 && <CallToAction ctaContainerRef={ctaContainerRef} />}
+      {step >= 2 && <CustomKitsSection />}
+      {step >= 3 && <ClothingSection />}
+      {step >= 4 && <ShopFooter />}
     </>
   );
 };
