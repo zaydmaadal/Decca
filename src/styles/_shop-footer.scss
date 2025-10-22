@@ -48,6 +48,25 @@
       .custom-kits-card-title {
         color: $white;
       }
+
+      // Witte borders en tekst voor clothing links in actieve state
+      .clothing-links a {
+        color: $white;
+        border-color: $white;
+
+        svg path {
+          stroke: $white;
+        }
+
+        &:hover {
+          background: $white;
+          color: #ff215f;
+
+          svg path {
+            stroke: #ff215f;
+          }
+        }
+      }
     }
 
     .custom-kits-tag {

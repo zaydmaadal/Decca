@@ -193,48 +193,45 @@ const CustomKitsSection = () => {
                     </span>
                     <h3 className="custom-kits-card-title">{card.title}</h3>
 
-                    {/* Clothing links - alleen tonen in active state */}
-                    {(activeCard === index ||
-                      getCardClass(index) === "active") && (
-                      <div className="clothing-links">
-                        <a href="/product">
-                          <svg
-                            width="8"
-                            height="6"
-                            viewBox="0 0 8 6"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M7.33325 3L4.83325 0.5M7.33325 3L4.83325 5.5M7.33325 3L2.95825 3M0.666585 3L1.70825 3"
-                              stroke="white"
-                              strokeWidth="0.8"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            ></path>
-                          </svg>
-                          Shop men
-                        </a>
-                        <a href="/product">
-                          <svg
-                            width="8"
-                            height="6"
-                            viewBox="0 0 8 6"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M7.33325 3L4.83325 0.5M7.33325 3L4.83325 5.5M7.33325 3L2.95825 3M0.666585 3L1.70825 3"
-                              stroke="white"
-                              strokeWidth="0.8"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            ></path>
-                          </svg>
-                          Shop women
-                        </a>
-                      </div>
-                    )}
+                    {/* Clothing links - always visible */}
+                    <div className="clothing-links">
+                      <a href="/product">
+                        <svg
+                          width="8"
+                          height="6"
+                          viewBox="0 0 8 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7.33325 3L4.83325 0.5M7.33325 3L4.83325 5.5M7.33325 3L2.95825 3M0.666585 3L1.70825 3"
+                            stroke="white"
+                            strokeWidth="0.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          ></path>
+                        </svg>
+                        Shop men
+                      </a>
+                      <a href="/product">
+                        <svg
+                          width="8"
+                          height="6"
+                          viewBox="0 0 8 6"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M7.33325 3L4.83325 0.5M7.33325 3L4.83325 5.5M7.33325 3L2.95825 3M0.666585 3L1.70825 3"
+                            stroke="white"
+                            strokeWidth="0.8"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          ></path>
+                        </svg>
+                        Shop women
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
