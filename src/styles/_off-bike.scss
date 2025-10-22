@@ -11,7 +11,7 @@
   text-align: center;
 
   @media (min-width: 1024px) {
-    width: min(1400px, 96vw);
+    width: min(1400px, 94vw);
     padding: 0;
   }
 
@@ -51,7 +51,7 @@
 #off-bike-hero {
   background: none;
   width: 100%;
-  max-width: min(1400px, 96vw);
+  max-width: min(1400px, 94vw);
   margin: 0 auto;
   border-radius: 12px;
   position: relative;
