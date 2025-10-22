@@ -13,7 +13,6 @@
   @media (min-width: 1024px) {
     width: min(1400px, 96vw);
     padding: 0;
-    text-align: left;
   }
 
   h2 {
@@ -51,11 +50,6 @@
   display: flex;
   justify-content: center;
   margin-top: responsive-clamp(28px, 4vw, 44px);
-  padding: 0 2vw;
-
-  @media (min-width: 1024px) {
-    padding: 0;
-  }
 }
 
 #off-bike-hero {
@@ -106,14 +100,6 @@
     background: $gradient-dark;
     z-index: 2;
 
-    // Mobile & Tablet: Center content for better visibility
-    @media (max-width: 768px) {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90%;
-      text-align: center;
-    }
-
     h3 {
       font-size: responsive-clamp(16px, 2.6vw, 20px);
       font-weight: 700;
@@ -132,7 +118,6 @@
       gap: responsive-clamp(8px, 1.8vw, 12px);
       flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
 
       a {
         color: $secondary-color;

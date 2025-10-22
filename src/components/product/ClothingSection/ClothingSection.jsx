@@ -51,17 +51,19 @@ const ClothingSection = ({ ctaContainerRef }) => {
 
     return (
       <header className="clothing-section-header mb-4 mb-md-5">
-        <ScrollReveal
-          baseOpacity={0.05}
-          enableBlur={true}
-          baseRotation={0}
-          blurStrength={12}
-          stagger={0.2}
-          containerClassName="clothing-section-text"
-        >
-          At Decca, we select only premium materials tailored to your ride, with
-          our designers bringing style to every detail.
-        </ScrollReveal>
+        <h2>
+          <ScrollReveal
+            baseOpacity={0.05}
+            enableBlur={true}
+            baseRotation={0}
+            blurStrength={12}
+            stagger={0.2}
+            containerClassName="clothing-section-text"
+          >
+            At Decca, we select only premium materials tailored to your ride,
+            with our designers bringing style to every detail.
+          </ScrollReveal>
+        </h2>
 
         <div className="clothing-section-image">
           <video
