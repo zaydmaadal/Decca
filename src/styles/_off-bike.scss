@@ -38,11 +38,7 @@
     font-weight: 600;
     white-space: nowrap;
     z-index: 10;
-
-    @media (min-width: 1024px) {
-      left: 0;
-      transform: none;
-    }
+    left: 0;
   }
 }
 
@@ -154,7 +150,7 @@
 @media (max-width: 768px) {
   .off-bike-header-wrapper .off-bike-tag {
     top: -37px;
-    left: 0;
+    left: 35px;
   }
 
   #off-bike-hero {

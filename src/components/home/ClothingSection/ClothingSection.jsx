@@ -24,17 +24,19 @@ const ClothingSection = () => {
 const OnBikeContent = () => (
   <>
     <div className="clothing-header-wrapper">
-      <ScrollReveal
-        baseOpacity={0.08}
-        enableBlur={true}
-        baseRotation={0}
-        blurStrength={10}
-        stagger={0.12}
-        containerClassName="clothing-scroll-reveal"
-      >
-        For athletes seeking ready-to-wear performance, discover Decca's
-        seasonal off-the-shelf essentials.
-      </ScrollReveal>
+      <h2>
+        <ScrollReveal
+          baseOpacity={0.08}
+          enableBlur={true}
+          baseRotation={0}
+          blurStrength={10}
+          stagger={0.12}
+          containerClassName="clothing-scroll-reveal"
+        >
+          For athletes seeking ready-to-wear performance, discover Decca's
+          seasonal off-the-shelf essentials.
+        </ScrollReveal>
+      </h2>
       <TagReveal className="tag" rotation={10}>
         on bike
       </TagReveal>
@@ -53,17 +55,19 @@ const OffBikeContent = () => (
       <TagReveal className="tag off-bike-tag" rotation={-10}>
         off-bike
       </TagReveal>
-      <ScrollReveal
-        baseOpacity={0.05}
-        enableBlur={true}
-        baseRotation={0}
-        blurStrength={10}
-        stagger={0.18}
-        containerClassName="off-bike-scroll-reveal"
-      >
-        For moments beyond the ride, explore Decca's off-bike apparel—where
-        comfort meets style for life on and off the road.
-      </ScrollReveal>
+      <h2>
+        <ScrollReveal
+          baseOpacity={0.05}
+          enableBlur={true}
+          baseRotation={0}
+          blurStrength={10}
+          stagger={0.18}
+          containerClassName="off-bike-scroll-reveal"
+        >
+          For moments beyond the ride, explore Decca's off-bike apparel—where
+          comfort meets style for life on and off the road.
+        </ScrollReveal>
+      </h2>
     </div>
     <div className="off-bike-items-wrapper">
       <OffBikeHero />
