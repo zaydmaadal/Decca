@@ -246,7 +246,8 @@
             font-size: 0.65rem; // Kleiner voor compacte look
             font-weight: 700;
             padding: 0.3rem 0.5rem; // Compacter
-            border: 1.5px solid $black; // Zwarte border voor niet-actieve cards
+            border: 1px solid $black; // Zwarte border voor niet-actieve cards
+
             border-radius: 999px;
             display: flex;
             justify-content: center;
