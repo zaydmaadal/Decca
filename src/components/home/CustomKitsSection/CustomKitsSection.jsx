@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import { gsap } from "gsap";
 
 import sectionSmallVideo from "../../../assets/videos/section-small-video.mp4";
 import bunchRidesVideo from "../../../assets/videos/bunch-rides.mp4";
@@ -6,6 +7,7 @@ import corporateRidesVideo from "../../../assets/videos/corporate-rides.mp4";
 import gravelEnduranceVideo from "../../../assets/videos/gravel-endurance.mp4";
 import fastRidesImg from "../../../assets/images/fast-rides.png";
 import socialRidesImg from "../../../assets/images/social-rides.png";
+import { init3dPerspectiveHover } from "../../../animations/TiltedCard";
 
 const CustomKitsSection = () => {
   const sectionRef = useRef(null);
@@ -13,6 +15,14 @@ const CustomKitsSection = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [activeCard, setActiveCard] = useState(null);
   const [isDesktop, setIsDesktop] = useState(false);
+  const initialScaleApplied = useRef(false);
+
+  useEffect(() => {
+    const destroy = init3dPerspectiveHover();
+    return () => {
+      if (typeof destroy === "function") destroy();
+    };
+  }, []);
 
   const kitCards = [
     {
@@ -97,6 +107,63 @@ const CustomKitsSection = () => {
     }
   };
 
+  // Apply correct scales based on carousel position or desktop mode
+  useEffect(() => {
+    const container = scrollContainerRef.current;
+
+    function applyScales() {
+      if (!container) return;
+      const cards = Array.from(
+        container.querySelectorAll("[data-3d-hover-target]")
+      );
+      const isDesktopMode = window.innerWidth >= 1200;
+
+      cards.forEach((card, idx) => {
+        let targetScale = 1;
+
+        if (!isDesktopMode) {
+          const pos = idx - currentIndex;
+          if (pos === 0) targetScale = 1;
+          else if (Math.abs(pos) === 1) targetScale = 0.8;
+          else targetScale = 0.7;
+        } else {
+          targetScale = 1;
+        }
+
+        // Voor de allereerste keer: set direct (geen animatie) om verkeerd startbeeld te voorkomen
+        if (!initialScaleApplied.current) {
+          gsap.set(card, { scale: targetScale });
+        } else {
+          gsap.to(card, {
+            scale: targetScale,
+            duration: 0.35,
+            ease: "power3.out",
+          });
+        }
+
+        // in carousel mode: verwijder hover-state voor niet-active kaarten
+        if (!isDesktopMode) {
+          if (!card.classList.contains("active"))
+            card.classList.remove("is-hovering");
+        }
+      });
+
+      // markeer dat we de initiële set gedaan hebben
+      initialScaleApplied.current = true;
+    }
+
+    // run after next paint zodat DOM classes (active/adjacent/far) aanwezig zijn
+    const rafId = requestAnimationFrame(applyScales);
+
+    // recompute on resize
+    window.addEventListener("resize", applyScales);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("resize", applyScales);
+    };
+  }, [currentIndex, activeCard]);
+
   // Scroll event listener voor snap functionaliteit
   useEffect(() => {
     const container = scrollContainerRef.current;
@@ -153,19 +220,20 @@ const CustomKitsSection = () => {
             </p>
           </div>
         </div>
-
         {/* Cards Section */}
         <div className="custom-kits-cards-wrapper" ref={scrollContainerRef}>
           <div className="custom-kits-cards-scroll">
             {kitCards.map((card, index) => (
               <div
+                data-3d-hover-target
+                data-max-rotate="20"
                 key={index}
                 className={`custom-kits-card ${getCardClass(index)}`}
                 onClick={() => handleCardClick(index)}
                 style={{ cursor: isDesktop ? "pointer" : "default" }}
               >
                 <div className="custom-kits-card-inner">
-                  <div className="custom-kits-media">
+                  <div className="custom-kits-media" data-3d-layer-depth="2">
                     {card.type === "video" ? (
                       <video autoPlay muted loop playsInline>
                         <source src={card.src} type="video/mp4" />
@@ -173,7 +241,7 @@ const CustomKitsSection = () => {
                     ) : (
                       <img src={card.src} alt={card.title} />
                     )}
-                    <div className="custom-kits-tags">
+                    <div className="custom-kits-tags" data-3d-layer-depth="1">
                       {card.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
@@ -187,7 +255,7 @@ const CustomKitsSection = () => {
                     </div>
                   </div>
 
-                  <div className="custom-kits-content">
+                  <div className="custom-kits-content" data-3d-layer-depth="2">
                     <span className="custom-kits-subtitle">
                       custom kits for
                     </span>

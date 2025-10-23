@@ -89,6 +89,62 @@
     }
 
     .custom-kits-card {
+      // 3D Hover styling - direct op card element
+      &[data-3d-hover-target] {
+        position: relative;
+        transform-style: preserve-3d;
+        will-change: transform;
+        overflow: visible;
+        backface-visibility: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+        transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+          box-shadow 0.28s ease;
+        z-index: 1;
+
+        &.is-hovering {
+          box-shadow: rgba(100, 100, 111, 0.2) 0px 20px 60px 0px;
+          z-index: 30;
+        }
+      }
+
+      // Layer depth styling
+      [data-3d-layer-depth] {
+        transform-style: preserve-3d;
+        will-change: transform;
+        transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1);
+      }
+
+      // Stronger tag "pop" effect
+      .custom-kits-tags[data-3d-layer-depth],
+      .custom-kits-tags {
+        transform: translateZ(20px);
+        transition: transform 0.28s cubic-bezier(0.2, 0.9, 0.3, 1),
+          filter 0.28s ease;
+        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
+      }
+
+      // When card is hovering, push tags more forward
+      &.is-hovering .custom-kits-tags {
+        transform: translateZ(40px) translateY(-4px);
+        filter: drop-shadow(0 14px 30px rgba(0, 0, 0, 0.22));
+      }
+
+      // Hover shadows voor 3D effect
+      &.is-hovering {
+        box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+          rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset !important;
+
+        .custom-kits-media {
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
+            rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        }
+
+        // Kleine shadow op individuele tags
+        .custom-kits-tag {
+          box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 12px 0px;
+        }
+      }
+
       &.adjacent .custom-kits-content .custom-kits-card-title {
         font-size: 1.3rem;
       }
@@ -140,13 +196,13 @@
       }
 
       &.adjacent {
-        transform: scale(0.8); // Aangepast van 0.9 naar 0.7
+        transform: scale(0.8) !important;
         filter: blur(1px) brightness(0.85);
         opacity: 0.85;
       }
 
       &.far {
-        transform: scale(0.7); // Aangepast van 0.8 naar 0.6
+        transform: scale(0.7) !important;
         filter: blur(2px) brightness(0.7);
         opacity: 0.7;
       }
@@ -164,6 +220,7 @@
         border-radius: 12px;
         overflow: hidden;
         margin-bottom: 0.5rem; // Minder margin
+        transition: box-shadow 0.3s ease; // Smooth shadow transition
 
         &::after {
           content: "";
@@ -204,6 +261,7 @@
         padding: 0.2rem 0.6rem; // Compacter
         border-radius: 999px;
         white-space: nowrap;
+        transition: box-shadow 0.3s ease; // Smooth shadow transition
 
         &.pink {
           background-color: $pink;
@@ -397,7 +455,6 @@
         margin: auto;
         filter: none !important;
         opacity: 1 !important;
-        box-shadow: none !important;
         cursor: pointer;
         transition: all 0.3s ease;
         padding: 8px 8px 0.75rem; // Consistente padding
@@ -413,6 +470,7 @@
         // Hover effect voor desktop (subtiel)
         &:hover {
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+          z-index: 30;
         }
 
         // Active card op desktop - geen positie verandering
