@@ -106,7 +106,15 @@ const OffBikeHero = () => (
         ))}
       </div>
     </div>
-    <video autoPlay muted loop playsInline className="off-bike-video">
+    <video 
+      autoPlay 
+      muted 
+      loop 
+      playsInline 
+      className="off-bike-video"
+      loading="lazy"
+      preload="none"
+    >
       <source src={offBikeVideo} type="video/mp4" />
       Your browser does not support the video tag.
     </video>

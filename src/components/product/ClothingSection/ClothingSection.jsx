@@ -73,6 +73,8 @@ const ClothingSection = ({ ctaContainerRef }) => {
             loop
             muted
             playsInline
+            loading="lazy"
+            preload="metadata"
             style={{
               width: "100%",
               height: "100%",
@@ -135,6 +137,8 @@ const ClothingSection = ({ ctaContainerRef }) => {
                     loop
                     muted
                     playsInline
+                    loading="lazy"
+                    preload="none"
                     style={{
                       width: "100%",
                       height: "100%",
@@ -201,6 +205,8 @@ const ClothingSection = ({ ctaContainerRef }) => {
                     loop
                     muted
                     playsInline
+                    loading="lazy"
+                    preload="none"
                     style={{
                       width: "100%",
                       height: "100%",

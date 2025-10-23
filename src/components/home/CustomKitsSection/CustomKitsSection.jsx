@@ -5,8 +5,8 @@ import sectionSmallVideo from "../../../assets/videos/section-small-video.mp4";
 import bunchRidesVideo from "../../../assets/videos/bunch-rides.mp4";
 import corporateRidesVideo from "../../../assets/videos/corporate-rides.mp4";
 import gravelEnduranceVideo from "../../../assets/videos/gravel-endurance.mp4";
-import fastRidesImg from "../../../assets/images/fast-rides.png";
-import socialRidesImg from "../../../assets/images/social-rides.png";
+import fastRidesImg from "../../../assets/images/fast-rides.webp";
+import socialRidesImg from "../../../assets/images/social-rides.webp";
 import { init3dPerspectiveHover } from "../../../animations/TiltedCard";
 
 const CustomKitsSection = () => {
@@ -203,7 +203,7 @@ const CustomKitsSection = () => {
       <div className="custom-kits-container">
         {/* Video */}
         <div className="custom-kits-video d-none d-md-block">
-          <video autoPlay muted loop playsInline>
+          <video autoPlay muted loop playsInline loading="lazy" preload="none">
             <source src={sectionSmallVideo} type="video/mp4" />
           </video>
         </div>
@@ -235,11 +235,23 @@ const CustomKitsSection = () => {
                 <div className="custom-kits-card-inner">
                   <div className="custom-kits-media" data-3d-layer-depth="2">
                     {card.type === "video" ? (
-                      <video autoPlay muted loop playsInline>
+                      <video
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        loading="lazy"
+                        preload={index === 0 ? "auto" : "none"}
+                      >
                         <source src={card.src} type="video/mp4" />
                       </video>
                     ) : (
-                      <img src={card.src} alt={card.title} />
+                      <img
+                        src={card.src}
+                        alt={card.title}
+                        loading={index < 2 ? "eager" : "lazy"}
+                        decoding="async"
+                      />
                     )}
                     <div className="custom-kits-tags" data-3d-layer-depth="1">
                       {card.tags.map((tag, tagIndex) => (

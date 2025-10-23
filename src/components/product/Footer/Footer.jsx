@@ -49,6 +49,8 @@ const Footer = () => {
               loop
               muted
               playsInline
+              loading="lazy"
+              preload="none"
             />
           </div>
 

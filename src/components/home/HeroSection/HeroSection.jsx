@@ -5,7 +5,15 @@ const HeroSection = ({ overlayRef, logoRef }) => {
   return (
     <section className="hero-section">
       <div className="video-container">
-        <video autoPlay muted loop playsInline className="hero-video">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="hero-video"
+          preload="auto"
+          fetchpriority="high"
+        >
           <source src={heroVideo} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -15,6 +23,8 @@ const HeroSection = ({ overlayRef, logoRef }) => {
             alt="Decca Logo"
             className="hero-logo"
             ref={logoRef}
+            loading="eager"
+            fetchpriority="high"
           />
         </div>
       </div>

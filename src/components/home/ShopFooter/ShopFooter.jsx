@@ -234,11 +234,23 @@ const ShopFooter = () => {
                 <div className="custom-kits-card-inner">
                   <div className="custom-kits-media" data-3d-layer-depth="2">
                     {card.type === "video" ? (
-                      <video autoPlay muted loop playsInline>
+                      <video 
+                        autoPlay 
+                        muted 
+                        loop 
+                        playsInline
+                        loading="lazy"
+                        preload="none"
+                      >
                         <source src={card.src} type="video/mp4" />
                       </video>
                     ) : (
-                      <img src={card.src} alt={card.title} />
+                      <img 
+                        src={card.src} 
+                        alt={card.title}
+                        loading="lazy"
+                        decoding="async"
+                      />
                     )}
                     <div className="custom-kits-tags" data-3d-layer-depth="1">
                       {card.tags.map((tag, tagIndex) => (
