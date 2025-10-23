@@ -106,11 +106,11 @@ const OffBikeHero = () => (
         ))}
       </div>
     </div>
-    <video 
-      autoPlay 
-      muted 
-      loop 
-      playsInline 
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
       className="off-bike-video"
       loading="lazy"
       preload="none"

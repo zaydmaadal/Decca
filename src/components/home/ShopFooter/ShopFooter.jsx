@@ -234,10 +234,10 @@ const ShopFooter = () => {
                 <div className="custom-kits-card-inner">
                   <div className="custom-kits-media" data-3d-layer-depth="2">
                     {card.type === "video" ? (
-                      <video 
-                        autoPlay 
-                        muted 
-                        loop 
+                      <video
+                        autoPlay
+                        muted
+                        loop
                         playsInline
                         loading="lazy"
                         preload="none"
@@ -245,8 +245,8 @@ const ShopFooter = () => {
                         <source src={card.src} type="video/mp4" />
                       </video>
                     ) : (
-                      <img 
-                        src={card.src} 
+                      <img
+                        src={card.src}
                         alt={card.title}
                         loading="lazy"
                         decoding="async"

@@ -5,11 +5,11 @@ const HeroSection = ({ overlayRef, logoRef }) => {
   return (
     <section className="hero-section">
       <div className="video-container">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
           className="hero-video"
           preload="auto"
           fetchpriority="high"

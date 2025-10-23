@@ -4,11 +4,11 @@ import logoHeroOverlay from "../../../assets/images/logo-hero-overlay.svg";
 const HeroSectionProduct = ({ overlayRef, logoRef }) => (
   <section className="hero-section hero-section-product">
     <div className="video-container">
-      <video 
-        autoPlay 
-        muted 
-        loop 
-        playsInline 
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
         className="hero-video"
         preload="auto"
         fetchpriority="high"
