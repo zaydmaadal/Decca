@@ -61,7 +61,10 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.01); // Fix border flicker on loop
+      object-position: center center; // Zorg dat video gecentreerd blijft
+      display: block; // Verwijder extra whitespace onder video
+      border-radius: 12px; // Border radius ook op video zelf
+      transform: scale(1); // Verwijder scale die cropping kan veroorzaken
       will-change: transform;
       backface-visibility: hidden;
     }
@@ -401,6 +404,10 @@
       transform: translateX(50%);
       width: min(325px, 80vw);
       top: -15%;
+
+      video {
+        border-radius: 12px; // Ensure border radius on tablet
+      }
     }
 
     .custom-kits-cards-wrapper {
@@ -436,6 +443,10 @@
       right: 25%;
       transform: translateX(50%);
       width: min(400px, 90vw);
+
+      video {
+        border-radius: 12px; // Ensure border radius on desktop
+      }
     }
 
     .custom-kits-cards-wrapper {

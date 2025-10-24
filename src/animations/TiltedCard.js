@@ -65,6 +65,23 @@ export function init3dPerspectiveHover() {
     });
   }
 
+  // observe DOM changes to active class (for carousel navigation)
+  const observer = new MutationObserver(() => {
+    measureAll();
+    if (!frameScheduled) {
+      frameScheduled = true;
+      requestAnimationFrame(updateAll);
+    }
+  });
+
+  // observe all card elements for class changes
+  targets.forEach((t) => {
+    observer.observe(t.el, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+  });
+
   // shared mouse
   let mouseX = window.innerWidth / 2;
   let mouseY = window.innerHeight / 2;
@@ -182,7 +199,12 @@ export function init3dPerspectiveHover() {
 
   // listeners to keep rects correct
   function onScroll() {
-    requestAnimationFrame(measureAll);
+    measureAll();
+    // trigger update after measuring so hover detection uses fresh rects
+    if (!frameScheduled) {
+      frameScheduled = true;
+      requestAnimationFrame(updateAll);
+    }
   }
 
   measureAll();
@@ -195,6 +217,7 @@ export function init3dPerspectiveHover() {
     document.removeEventListener("pointermove", onPointerMove);
     window.removeEventListener("resize", onResizeMode);
     window.removeEventListener("scroll", onScroll);
+    observer.disconnect();
   }
 
   return destroy;
